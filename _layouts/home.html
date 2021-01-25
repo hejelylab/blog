@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+        <div id="content">
+
+          <!-- start listing all posts in _posts folder with links-->
+          {%- if site.posts.size > 0 -%}
+          <h3 id="importantheader">Latest posts</h3>
+          <ul >
+            {%- for post in site.posts limit:3 -%}
+            <li>
+              {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+              <span >{{ post.date | date: date_format }}</span>
+              <h3>
+                <a  href="{{ post.url | relative_url }}">
+                  {{ post.title | escape }}
+                </a>
+              </h3>
+              {%- if site.show_excerpts -%}
+                {{ post.excerpt }}
+              {%- endif -%}
+            </li>
+            {%- endfor -%}
+            {%- if site.posts.size > 3 -%}
+            <h4><a href="allposts.html">See all posts</a></h4>
+            {%- endif -%}
+          </ul>
+          {%- endif -%}
+
+        </div>
+
