@@ -9,22 +9,24 @@ Sometimes, we're encountered with this question of whether for example a comprom
 
 There are two important artifacts on Windows system that may reveal this information to us which are JumpLists and LNK files.
 
+---
+
 ### What are JumpLists?
 Jumplists are means to ease user's access to the frequently/previously accessed items in system with regards to the installed application.
 
 This will provide us an opportunity to see if an an application file was opened under a user profile or not.
 
-**JumpLists Locations:**<br>
+**JumpLists Locations**<br>
 They are in each user's pofile in these two directories<br>
-C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations<br>
-C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations<br>
+C:\Users\\\<username\>\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations<br>
+C:\Users\\\<username\>\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations<br>
 
-**JumpLists Parsing Tools:**<br>
-Jumplist Explorer (GUI based Jump List viewer)<br>
-JLECmd (Jump List parser)<br>
-etc.<br> 
+**JumpLists Parsing Tools**<br>
+- Jumplist Explorer (GUI based Jump List viewer)<br>
+- JLECmd (Jump List parser)<br>
+- etc.<br> 
 
-**Example:**<br>
+**Example**<br>
 Let's check 3rd easy challenge (Bling-Bling) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be Jumplist Explorer.
@@ -60,23 +62,23 @@ These LNK files usually get created once opening a local/remote file.
 
 This can also be helpful sometimes even if the original (target) file has been removed.
 
-**LNK files Locations:**<br>
+**LNK files Locations**<br>
 They can be anywhere in filesystem; however, the following two directories are interesting ones to parse when trying to seach for an evidence related to whether a file has been accessed/opened or not.
 
-C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Recent<br>
-C:\Users\<username>\AppData\Roaming\Microsoft\Office\Recent
+C:\Users\\\<username\>\AppData\Roaming\Microsoft\Windows\Recent<br>
+C:\Users\\\<username\>\AppData\Roaming\Microsoft\Office\Recent
 
-**LNK Files Parsing Tools:**<br>
-LECMD<br>
-exiftool<br>
-etc.
+**LNK Files Parsing Tools**<br>
+- LECMD<br>
+- exiftool<br>
+- etc.
 
-**Example:**<br>
+**Example**<br>
 Let's check 8th easy challenge (LNK Files) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be LECMD
 
-**LECMD used command:**<br>
+**LECMD used command**<br>
 `LECmd.exe -d "C:\Users\%username%\Downloads\Challenges\Easy - LNK - Rumors\Challenge\littlefinger\AppData\Roaming\Microsoft\Windows\Recent" --csv . --csvf littlefingerLNK.csv`
 
 `-d` directs lecmd to parse recent folder of littlefinger user.<br>

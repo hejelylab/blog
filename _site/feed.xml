@@ -1,23 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-01-28T21:36:27+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a specific file accessed by this user?</title><link href="http://localhost:4000/blog/IRC/file-access-evidence" rel="alternate" type="text/html" title="Was a specific file accessed by this user?" /><published>2021-01-28T21:00:00+03:00</published><updated>2021-01-28T21:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/file-access-evidence</id><content type="html" xml:base="http://localhost:4000/blog/IRC/file-access-evidence">&lt;p&gt;Sometimes, we’re encountered with this question of whether for example a compromised account has accessed an important local/remote file.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-01-31T23:12:37+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a malicious application executed on system?</title><link href="http://localhost:4000/blog/IRC/application-execution-evidence-prefetch" rel="alternate" type="text/html" title="Was a malicious application executed on system?" /><published>2021-01-31T23:00:00+03:00</published><updated>2021-01-31T23:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/application-execution-evidence-prefetch</id><content type="html" xml:base="http://localhost:4000/blog/IRC/application-execution-evidence-prefetch">&lt;p&gt;Sometimes, we would like to answer once a malicious application found on system, the following questions&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Was it executed?&lt;/li&gt;
+  &lt;li&gt;How many times it was executed?&lt;/li&gt;
+  &lt;li&gt;What date/time the application was executed?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One of several found artifacts on Windows system that provide evidence whether an application was executed or not is Prefetch.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;what-is-prefetch&quot;&gt;What is Prefetch?&lt;/h3&gt;
+&lt;p&gt;Prefetch is a mean for the OS to speed up booting and application loading times. 
+This artifact can help us in identifying if an application was executed, time of execution, and number of times it was executed.&lt;/p&gt;
+
+&lt;p&gt;All of this depends if this feature is enabled on system or not. Due to the low number of times Windows server boot up in comparison to workstations, this feature is disabled by default.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prefetch Directory Location&lt;/strong&gt;&lt;br /&gt;
+C:\Windows\Prefetch&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Prefetch Example&lt;/strong&gt;&lt;br /&gt;
+CMD.EXE-12345678.pf&lt;/p&gt;
+
+&lt;p&gt;Details&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Application Name&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Dash -&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Path Hash (8 Characters)&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;.pf&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;br /&gt;
+Let’s say you’ve found two entries relate to CMD, what does this mean?&lt;br /&gt;
+This means that CMD.EXE is located in two different locations and both of CMD instances were run at least 1 time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note about Path Hash&lt;/strong&gt;&lt;br /&gt;
+In case of the executed application is a hosting application such as rundll32.exe, svchost.exe, etc. the calculated hash isn’t generated from only the path hash, but also other factors contribute into this such as the used command line when running the application, in addition to the /Prefetch command line argument if it was used.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Prefetch Parsing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;PECMD&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;WinPrefetchView&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;w10pf_parse&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;etc.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
+Let’s check 5th easy challenge (B4 Catch) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;p&gt;Used tool here will be PECMD&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;PECMD used command&lt;/strong&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PECmd.exe -f &quot;C:\Users\%username%\Downloads\Challenges\Easy - Prefetches - B4-Catch\Challenge\Prefetch\SCVHOST.EXE-E4213C89.pf&quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;4th-challenge&quot;&gt;4th Challenge&lt;/h3&gt;
+
+&lt;p&gt;This challenges asks two questions with regards to found malicious application on system&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;How many times this application was executed?&lt;/li&gt;
+  &lt;li&gt;Last execution time of the application&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210131-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since the question is about only the malicious application “scvhost”, we’ll parse only its prefetch (pf) file.&lt;br /&gt;
+The following screenshots shows the number of times it was executed, and the times of execution, in addition to the last run.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210131-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
+&lt;p&gt;Number of execution: 4&lt;br /&gt;
+Time Stamp: 07-02-2020 21:26&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;https://www.hexacorn.com/blog/2012/06/13/prefetch-hash-calculator-a-hash-lookup-table-xpvistaw7w2k3w2k8/&lt;/li&gt;
+  &lt;li&gt;https://hiddenillusion.github.io/2016/05/10/go-prefetch-yourself/&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><summary type="html">Sometimes, we would like to answer once a malicious application found on system, the following questions</summary></entry><entry><title type="html">Was a specific file accessed by this user?</title><link href="http://localhost:4000/blog/IRC/file-access-evidence" rel="alternate" type="text/html" title="Was a specific file accessed by this user?" /><published>2021-01-28T21:00:00+03:00</published><updated>2021-01-28T21:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/file-access-evidence</id><content type="html" xml:base="http://localhost:4000/blog/IRC/file-access-evidence">&lt;p&gt;Sometimes, we’re encountered with this question of whether for example a compromised account has accessed an important local/remote file.&lt;/p&gt;
 
 &lt;p&gt;There are two important artifacts on Windows system that may reveal this information to us which are JumpLists and LNK files.&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;h3 id=&quot;what-are-jumplists&quot;&gt;What are JumpLists?&lt;/h3&gt;
 &lt;p&gt;Jumplists are means to ease user’s access to the frequently/previously accessed items in system with regards to the installed application.&lt;/p&gt;
 
 &lt;p&gt;This will provide us an opportunity to see if an an application file was opened under a user profile or not.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;JumpLists Locations:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;JumpLists Locations&lt;/strong&gt;&lt;br /&gt;
 They are in each user’s pofile in these two directories&lt;br /&gt;
-C:\Users&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations&lt;br /&gt;
-C:\Users&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations&lt;br /&gt;&lt;/p&gt;
+C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations&lt;br /&gt;
+C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;JumpLists Parsing Tools:&lt;/strong&gt;&lt;br /&gt;
-Jumplist Explorer (GUI based Jump List viewer)&lt;br /&gt;
-JLECmd (Jump List parser)&lt;br /&gt;
-etc.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;JumpLists Parsing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Jumplist Explorer (GUI based Jump List viewer)&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;JLECmd (Jump List parser)&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;etc.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
 Let’s check 3rd easy challenge (Bling-Bling) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
 
 &lt;p&gt;Used tool here will be Jumplist Explorer.&lt;/p&gt;
@@ -52,23 +144,25 @@ These LNK files usually get created once opening a local/remote file.&lt;/p&gt;
 
 &lt;p&gt;This can also be helpful sometimes even if the original (target) file has been removed.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;LNK files Locations:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;LNK files Locations&lt;/strong&gt;&lt;br /&gt;
 They can be anywhere in filesystem; however, the following two directories are interesting ones to parse when trying to seach for an evidence related to whether a file has been accessed/opened or not.&lt;/p&gt;
 
-&lt;p&gt;C:\Users&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Recent&lt;br /&gt;
-C:\Users&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Office\Recent&lt;/p&gt;
+&lt;p&gt;C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Recent&lt;br /&gt;
+C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Office\Recent&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;LNK Files Parsing Tools:&lt;/strong&gt;&lt;br /&gt;
-LECMD&lt;br /&gt;
-exiftool&lt;br /&gt;
-etc.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;LNK Files Parsing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;LECMD&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;exiftool&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;etc.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
 Let’s check 8th easy challenge (LNK Files) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
 
 &lt;p&gt;Used tool here will be LECMD&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;LECMD used command:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;LECMD used command&lt;/strong&gt;&lt;br /&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LECmd.exe -d &quot;C:\Users\%username%\Downloads\Challenges\Easy - LNK - Rumors\Challenge\littlefinger\AppData\Roaming\Microsoft\Windows\Recent&quot; --csv . --csvf littlefingerLNK.csv&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-d&lt;/code&gt; directs lecmd to parse recent folder of littlefinger user.&lt;br /&gt;
@@ -104,24 +198,26 @@ In NTFS filesystem, each folder/file has one entry in MFT with two different tim
 
 &lt;p&gt;Mainly, standard information attributes are modifiable by users, whereas file name attributes tend to be modified by OS.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;MFT Location:&lt;/strong&gt;&lt;br /&gt;
-Root directory of the drive for example C:$MFT&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MFT Location&lt;/strong&gt;&lt;br /&gt;
+Root directory of the drive for example C:\$MFT&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;MFT Parsing Tools:&lt;/strong&gt;&lt;br /&gt;
-MFTECMD&lt;br /&gt;
-analyzeMFT.py&lt;br /&gt;
-Mft2Csv&lt;br /&gt;
-MFTExplorer&lt;br /&gt;
-etc.&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;MFT Parsing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;MFTECMD&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;analyzeMFT.py&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Mft2Csv&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;MFTExplorer&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;etc.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
 Let’s check 1st easy challenge (Time Machine) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
 
 &lt;p&gt;Let’s use MFTECmd to parse $MFT file, and then view the results using Timeline Explorer&lt;/p&gt;
 
 &lt;p&gt;Link to download these two tools: https://ericzimmerman.github.io/#!index.md&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;MFTECmd used command:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;MFTECmd used command&lt;/strong&gt;&lt;br /&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MFTECMD.exe -f &quot;$MFT&quot; --csv . --bn MFTOUTPUT.csv&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;. means we would like to save the outputted CSV file to the same directory.&lt;/p&gt;

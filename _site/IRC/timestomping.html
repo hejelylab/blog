@@ -24,7 +24,7 @@
 {"dateModified":"2021-01-25T23:50:00+03:00","datePublished":"2021-01-25T23:50:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/timestomping"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/timestomping","description":"What is timestomping? Timestomping is the ability from an attacker to modify original timestamps of folder/file in order to prevent the investigator from associating these timestamps with an attack period.","headline":"Was there timestomping on the analyzed system?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=ae6f9ce10d1208dbb462a2f55fd1c0cada440e6f">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=0fafb26f4fe1fe6e0aa53092bc8120e9469d6c19">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -70,24 +70,26 @@ In NTFS filesystem, each folder/file has one entry in MFT with two different tim
 
 <p>Mainly, standard information attributes are modifiable by users, whereas file name attributes tend to be modified by OS.</p>
 
-<p><strong>MFT Location:</strong><br />
-Root directory of the drive for example C:$MFT</p>
+<p><strong>MFT Location</strong><br />
+Root directory of the drive for example C:\$MFT</p>
 
-<p><strong>MFT Parsing Tools:</strong><br />
-MFTECMD<br />
-analyzeMFT.py<br />
-Mft2Csv<br />
-MFTExplorer<br />
-etc.<br /></p>
+<p><strong>MFT Parsing Tools</strong><br /></p>
+<ul>
+  <li>MFTECMD<br /></li>
+  <li>analyzeMFT.py<br /></li>
+  <li>Mft2Csv<br /></li>
+  <li>MFTExplorer<br /></li>
+  <li>etc.<br /></li>
+</ul>
 
-<p><strong>Example:</strong><br />
+<p><strong>Example</strong><br />
 Let’s check 1st easy challenge (Time Machine) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Let’s use MFTECmd to parse $MFT file, and then view the results using Timeline Explorer</p>
 
 <p>Link to download these two tools: https://ericzimmerman.github.io/#!index.md</p>
 
-<p><strong>MFTECmd used command:</strong><br />
+<p><strong>MFTECmd used command</strong><br />
 <code class="language-plaintext highlighter-rouge">MFTECMD.exe -f "$MFT" --csv . --bn MFTOUTPUT.csv</code></p>
 
 <p>. means we would like to save the outputted CSV file to the same directory.</p>

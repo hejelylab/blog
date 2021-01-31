@@ -15,17 +15,17 @@ In NTFS filesystem, each folder/file has one entry in MFT with two different tim
 
 Mainly, standard information attributes are modifiable by users, whereas file name attributes tend to be modified by OS.
 
-**MFT Location:**<br>
-Root directory of the drive for example C:\$MFT
+**MFT Location**<br>
+Root directory of the drive for example C:\\$MFT
 
-**MFT Parsing Tools:**<br>
-MFTECMD<br>
-analyzeMFT.py<br>
-Mft2Csv<br>
-MFTExplorer<br>
-etc.<br> 
+**MFT Parsing Tools**<br>
+- MFTECMD<br>
+- analyzeMFT.py<br>
+- Mft2Csv<br>
+- MFTExplorer<br>
+- etc.<br> 
 
-**Example:**<br>
+**Example**<br>
 Let's check 1st easy challenge (Time Machine) in (incident-response-challenge.com) website and try to solve it.
 
 Let's use MFTECmd to parse $MFT file, and then view the results using Timeline Explorer
@@ -33,7 +33,7 @@ Let's use MFTECmd to parse $MFT file, and then view the results using Timeline E
 Link to download these two tools: https://ericzimmerman.github.io/#!index.md
 
 
-**MFTECmd used command:**<br>
+**MFTECmd used command**<br>
 `MFTECMD.exe -f "$MFT" --csv . --bn MFTOUTPUT.csv`
 
 . means we would like to save the outputted CSV file to the same directory.
