@@ -1,0 +1,136 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Was a specific file deleted from filesystem? | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Was a specific file deleted from filesystem?" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for." />
+<meta property="og:description" content="Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for." />
+<link rel="canonical" href="http://localhost:4000/blog/IRC/file-deletion-evidence" />
+<meta property="og:url" content="http://localhost:4000/blog/IRC/file-deletion-evidence" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-03T19:15:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Was a specific file deleted from filesystem?" />
+<script type="application/ld+json">
+{"dateModified":"2021-02-03T19:15:00+03:00","datePublished":"2021-02-03T19:15:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/file-deletion-evidence"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/file-deletion-evidence","description":"Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.","headline":"Was a specific file deleted from filesystem?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=0fafb26f4fe1fe6e0aa53092bc8120e9469d6c19">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>Welcome to this blog.</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">Was a specific file deleted from filesystem?</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-02-03T19:15:00+03:00" itemprop="datePublished">Feb 3, 2021
+      </time></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <p>Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.</p>
+
+<hr />
+
+<h3 id="journaling">Journaling</h3>
+<p>Filesystems have the concept of journaling which allows the OS to keep a track of changes that are made to the filesystem itself.</p>
+
+<p><strong>NTFS FileSystem</strong><br />
+NTFS filesystem has two journal types<br /></p>
+<ol>
+  <li>USN Journal<br />
+ Purpose: keep track of changes to files/directories in the filesystem with the reason of each and every change<br />
+ Location: C:\$Extend\$USNJOURNAL<br />
+ $USNJOURNAL contains both $MAX and $J files<br />
+ What we’re mostly interested in is the $J file where a track of changes to files and folders are recorded</li>
+  <li>LogFile ($LOGFILE)<br />
+ This file keeps a track of changes to $MFT file<br /></li>
+</ol>
+
+<p><strong>Journals Parsing Tools</strong><br /></p>
+<ul>
+  <li>ANJP<br /></li>
+  <li>MFTECMD<br /></li>
+  <li>etc.<br /></li>
+</ul>
+
+<p><strong>Example</strong><br />
+Let’s check 2nd medium challenge (CopyPaSTe) in (incident-response-challenge.com) website and try to solve it.</p>
+
+<p>Used tool here will be MFTECMD</p>
+
+<p><strong>MFTECMD used command</strong><br />
+<code class="language-plaintext highlighter-rouge">MFTECmd.exe -f "C:\Users\%username%\Downloads\Challenges\Medium - NTFS Journal Forensics - Copy PaSTe\Challenge\Artifacts-J\$J" --csv . --csvf J_CSV.csv</code></p>
+
+<p>-f points to $J file<br />
+I’ve already downloaded the question evidence into my current Downloads folder.</p>
+
+<p>–csv . means create csv file in the same current directory<br />
+–csvf means name the outputted csv file this way</p>
+
+<hr />
+
+<h3 id="5th-challenge">5th Challenge</h3>
+
+<p>This challenges focuses on proving whether a specific file related to (John’s E-Mail data) has existed previously on Theon’s system.</p>
+
+<p><strong>Question Screenshot</strong></p>
+
+<p><img src="/blog/assets/images/210203-1.png" alt="first screenshot" /></p>
+
+<p>Since the question’s artifacts are only $MFT and Journaling files.
+We’ll parse $J using MFTECMD to find out if such a file existed on the system or not using the mentioned above command</p>
+
+<p>As we can see in the outputted CSV file after some filtration to only include files that have the word “john”, the following entries are seen. Evidently, PST file was created and then deleted from the file system</p>
+
+<p><img src="/blog/assets/images/210203-2.png" alt="second screenshot" /></p>
+
+<h3 id="answer-to-the-challenge">Answer to the challenge</h3>
+<p>File Name: JohnSnowPST.pst<br /></p>
+
+  </div><a class="u-url" href="/blog/IRC/file-deletion-evidence" hidden></a>
+</article>
+
+
+        <hr>
+        <span id="footer"> &copy; HejelyLab 2021</span>
+
+      </section>
+
+    </div>
+
+    
+  </body>
+</html>

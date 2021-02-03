@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-01-31T23:12:37+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a malicious application executed on system?</title><link href="http://localhost:4000/blog/IRC/application-execution-evidence-prefetch" rel="alternate" type="text/html" title="Was a malicious application executed on system?" /><published>2021-01-31T23:00:00+03:00</published><updated>2021-01-31T23:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/application-execution-evidence-prefetch</id><content type="html" xml:base="http://localhost:4000/blog/IRC/application-execution-evidence-prefetch">&lt;p&gt;Sometimes, we would like to answer once a malicious application found on system, the following questions&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-03T19:23:30+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a specific file deleted from filesystem?</title><link href="http://localhost:4000/blog/IRC/file-deletion-evidence" rel="alternate" type="text/html" title="Was a specific file deleted from filesystem?" /><published>2021-02-03T19:15:00+03:00</published><updated>2021-02-03T19:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/file-deletion-evidence</id><content type="html" xml:base="http://localhost:4000/blog/IRC/file-deletion-evidence">&lt;p&gt;Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;journaling&quot;&gt;Journaling&lt;/h3&gt;
+&lt;p&gt;Filesystems have the concept of journaling which allows the OS to keep a track of changes that are made to the filesystem itself.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NTFS FileSystem&lt;/strong&gt;&lt;br /&gt;
+NTFS filesystem has two journal types&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;USN Journal&lt;br /&gt;
+ Purpose: keep track of changes to files/directories in the filesystem with the reason of each and every change&lt;br /&gt;
+ Location: C:\$Extend\$USNJOURNAL&lt;br /&gt;
+ $USNJOURNAL contains both $MAX and $J files&lt;br /&gt;
+ What we’re mostly interested in is the $J file where a track of changes to files and folders are recorded&lt;/li&gt;
+  &lt;li&gt;LogFile ($LOGFILE)&lt;br /&gt;
+ This file keeps a track of changes to $MFT file&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Journals Parsing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ANJP&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;MFTECMD&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;etc.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
+Let’s check 2nd medium challenge (CopyPaSTe) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;p&gt;Used tool here will be MFTECMD&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MFTECMD used command&lt;/strong&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MFTECmd.exe -f &quot;C:\Users\%username%\Downloads\Challenges\Medium - NTFS Journal Forensics - Copy PaSTe\Challenge\Artifacts-J\$J&quot; --csv . --csvf J_CSV.csv&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;-f points to $J file&lt;br /&gt;
+I’ve already downloaded the question evidence into my current Downloads folder.&lt;/p&gt;
+
+&lt;p&gt;–csv . means create csv file in the same current directory&lt;br /&gt;
+–csvf means name the outputted csv file this way&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;5th-challenge&quot;&gt;5th Challenge&lt;/h3&gt;
+
+&lt;p&gt;This challenges focuses on proving whether a specific file related to (John’s E-Mail data) has existed previously on Theon’s system.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210203-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since the question’s artifacts are only $MFT and Journaling files.
+We’ll parse $J using MFTECMD to find out if such a file existed on the system or not using the mentioned above command&lt;/p&gt;
+
+&lt;p&gt;As we can see in the outputted CSV file after some filtration to only include files that have the word “john”, the following entries are seen. Evidently, PST file was created and then deleted from the file system&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210203-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
+&lt;p&gt;File Name: JohnSnowPST.pst&lt;br /&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><summary type="html">Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.</summary></entry><entry><title type="html">Was a malicious application executed on system?</title><link href="http://localhost:4000/blog/IRC/application-execution-evidence-prefetch" rel="alternate" type="text/html" title="Was a malicious application executed on system?" /><published>2021-01-31T23:00:00+03:00</published><updated>2021-01-31T23:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/application-execution-evidence-prefetch</id><content type="html" xml:base="http://localhost:4000/blog/IRC/application-execution-evidence-prefetch">&lt;p&gt;Sometimes, we would like to answer once a malicious application found on system, the following questions&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Was it executed?&lt;/li&gt;
