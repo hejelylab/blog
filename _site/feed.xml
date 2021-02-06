@@ -1,4 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-03T19:23:30+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a specific file deleted from filesystem?</title><link href="http://localhost:4000/blog/IRC/file-deletion-evidence" rel="alternate" type="text/html" title="Was a specific file deleted from filesystem?" /><published>2021-02-03T19:15:00+03:00</published><updated>2021-02-03T19:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/file-deletion-evidence</id><content type="html" xml:base="http://localhost:4000/blog/IRC/file-deletion-evidence">&lt;p&gt;Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-06T14:27:23+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a USB connected to system?</title><link href="http://localhost:4000/blog/IRC/usb-investigation" rel="alternate" type="text/html" title="Was a USB connected to system?" /><published>2021-02-06T13:45:00+03:00</published><updated>2021-02-06T13:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/usb-investigation</id><content type="html" xml:base="http://localhost:4000/blog/IRC/usb-investigation">&lt;p&gt;Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Maker&lt;/li&gt;
+  &lt;li&gt;Serial Number/UID&lt;/li&gt;
+  &lt;li&gt;USB Connection Date/Time&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;usb-connection-investigation&quot;&gt;USB Connection Investigation&lt;/h3&gt;
+&lt;p&gt;To investigate if a USB was connected or not, SYSTEM registry hive can be parsed looking for USBSTOR registry key.&lt;/p&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;&lt;strong&gt;System Registry Files Location&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;%Windir%\System32\Config&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;One of which is SYSTEM hive&lt;/dd&gt;
+  &lt;dt&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dt&gt;&lt;strong&gt;USBSTOR Registry Key Location inside SYSTEM hive&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;SYSTEM\CurrentControlSet\Enum\USBSTOR&lt;/dd&gt;
+  &lt;dt&gt;&lt;br /&gt;	&lt;/dt&gt;
+  &lt;dt&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dt&gt;I have parsed SYSTEM hive and I noticed ControlSet00* and not CurrentControlSet&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;ControlSet001 is the last control set the system booted with&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;ControlSet002 is the last known good control set&lt;br /&gt;
+&lt;br /&gt;&lt;/dd&gt;
+  &lt;dt&gt;&lt;strong&gt;USB Investigation Tools&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;Registry explorer (SYSTEM Hive)&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;USB Detective&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;RECmd&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;RegRipper&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;etc.&lt;br /&gt;
+&lt;br /&gt;&lt;/dd&gt;
+  &lt;dt&gt;&lt;strong&gt;Hunt for USB Connection&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dt&gt;If you would like to know whenever a new external device is connected or enabled, look for this event ID&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Security Logs, Event ID: 6416&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
+Let’s check 2nd easy challenge (Hello DoK) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;p&gt;Used tool here will be Registry Explorer&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;6th-challenge&quot;&gt;6th Challenge&lt;/h3&gt;
+
+&lt;p&gt;This challenge focuses on proving whether a USB was connected to system, and if so, provide its serial/UID number.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ll parse SYSTEM hive using Registry Explorer and navigate to the following key USBSTOR
+SYSTEM\ControlSet001\Enum\USBSTOR&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Maker: SanDisk&lt;/p&gt;
+
+&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
+&lt;p&gt;Serial/UID: 4C530000281008116284&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h3 id=&quot;usb-connection-datestimes&quot;&gt;USB Connection Dates/Times&lt;/h3&gt;
+&lt;p&gt;Using the same registry key USBSTOR, we are able to know more information with regards to USB connection/removal dates/times&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The first time this USB was connected&lt;/li&gt;
+  &lt;li&gt;The last time this USB was connected&lt;/li&gt;
+  &lt;li&gt;The last time this USB was removed&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The followng screenshot shows these evidence&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;br /&gt;
+1.https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416
+2.https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf&lt;/p&gt;</content><author><name>HejelyLab</name></author><summary type="html">Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its Maker Serial Number/UID USB Connection Date/Time</summary></entry><entry><title type="html">Was a specific file deleted from filesystem?</title><link href="http://localhost:4000/blog/IRC/file-deletion-evidence" rel="alternate" type="text/html" title="Was a specific file deleted from filesystem?" /><published>2021-02-03T19:15:00+03:00</published><updated>2021-02-03T19:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/file-deletion-evidence</id><content type="html" xml:base="http://localhost:4000/blog/IRC/file-deletion-evidence">&lt;p&gt;Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.&lt;/p&gt;
 
 &lt;hr /&gt;
 
