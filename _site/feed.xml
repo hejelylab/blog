@@ -1,4 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-06T14:27:23+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Was a USB connected to system?</title><link href="http://localhost:4000/blog/IRC/usb-investigation" rel="alternate" type="text/html" title="Was a USB connected to system?" /><published>2021-02-06T13:45:00+03:00</published><updated>2021-02-06T13:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/usb-investigation</id><content type="html" xml:base="http://localhost:4000/blog/IRC/usb-investigation">&lt;p&gt;Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-13T17:18:10+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">What folders were accessed by a specific user?</title><link href="http://localhost:4000/blog/IRC/folder-access" rel="alternate" type="text/html" title="What folders were accessed by a specific user?" /><published>2021-02-13T16:55:00+03:00</published><updated>2021-02-13T16:55:00+03:00</updated><id>http://localhost:4000/blog/IRC/folder-access</id><content type="html" xml:base="http://localhost:4000/blog/IRC/folder-access">&lt;p&gt;Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;what-are-shellbags&quot;&gt;What are Shellbags?&lt;/h3&gt;
+&lt;p&gt;Shellbags are user’s registry keys which help in storing user’s view preferences of folders in Windows OS.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
+You visit a specific folder, modify the way items are presented in that folder. Once visiting the same folder again, the previous view preference is rendered from Shellbag registry keys.
+Therefore, Shellbags may provide us an evidence of user’s access to folders.&lt;/p&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;Shellbags keys are in the following DAT files in each user’s profile (these two DAT files are considered user’s registry files/hives)&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;NTUSER.DAT&lt;/dd&gt;
+  &lt;dd&gt;UsrClass.dat&lt;br /&gt;&lt;br /&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;NTUSER.DAT and UsrClass.dat Locations in each user’s profile&lt;br /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;NTUSER.DAT&lt;br /&gt;&lt;/dt&gt;
+    &lt;dd&gt;C:\Users\&amp;lt;username&amp;gt;\NTUSER.DAT&lt;br /&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;UsrClass.dat&lt;br /&gt;&lt;/dt&gt;
+    &lt;dd&gt;C:\Users\&amp;lt;username&amp;gt;\AppData\Local\Microsoft\Windows\UsrClass.dat&lt;br /&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/blockquote&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;&lt;strong&gt;Once parsing the mentioned two DAT files, Shellbag keys are in the following locations&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;NTUSER.DAT\Software\Microsoft\Windows\Shell\BagMRU&lt;/dd&gt;
+  &lt;dd&gt;NTUSER.DAT\Software\Microsoft\Windows\Shell\Bags&lt;/dd&gt;
+  &lt;dd&gt;UsrClass.dat\Local Settings\Software\Microsoft\Windows\Shell\BagMRU&lt;/dd&gt;
+  &lt;dd&gt;UsrClass.dat\Local Settings\Software\Microsoft\Windows\Shell\Bags&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;&lt;strong&gt;Shellbag keys description&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;BagMRU&lt;br /&gt;&lt;/dt&gt;
+    &lt;dd&gt;Stores actual directory structures of accessed folders&lt;br /&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;Bags&lt;br /&gt;&lt;/dt&gt;
+    &lt;dd&gt;Stores actual folder customization data (window size, layout type, etc.)&lt;br /&gt;&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/blockquote&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;&lt;strong&gt;Shellbags Parsing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;Windows ShellBag Parser&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;Shellbags.py&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;ShellBags Explorer (View both NTUSER.DAT and UsrClass.dat)&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;SBECmd&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;Registry Explorer&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;RECmd&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;etc.&lt;br /&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
+Let’s check 1st medium challenge (Can’t touch this) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;p&gt;Used tool here will be ShellBags Explorer&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;7th-challenge&quot;&gt;7th Challenge&lt;/h3&gt;
+
+&lt;p&gt;This challenge asks if “Projects” folder was accessed in a specific time frame, and if so, confirm the folder recreation timestamp.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210213-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since the provided evidence contains user’s profile files, we’ll view both registry files NTUSER.DAT and UsrClass.dat using ShellBags Explorer searching for “Projects” folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210213-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
+&lt;p&gt;12:41:26&lt;/p&gt;</content><author><name>HejelyLab</name></author><summary type="html">Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.</summary></entry><entry><title type="html">Was a USB connected to system?</title><link href="http://localhost:4000/blog/IRC/usb-investigation" rel="alternate" type="text/html" title="Was a USB connected to system?" /><published>2021-02-06T13:45:00+03:00</published><updated>2021-02-06T13:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/usb-investigation</id><content type="html" xml:base="http://localhost:4000/blog/IRC/usb-investigation">&lt;p&gt;Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Maker&lt;/li&gt;
   &lt;li&gt;Serial Number/UID&lt;/li&gt;
