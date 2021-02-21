@@ -3,6 +3,7 @@ layout: post
 title: Was a specific file accessed by this user?
 date: 2021-01-28 21:00
 permalink: /IRC/file-access-evidence
+categories: [IRC, Digital Forensics]
 ---
 
 Sometimes, we're encountered with this question of whether for example a compromised account has accessed an important local/remote file.

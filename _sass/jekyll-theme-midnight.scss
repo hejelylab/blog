@@ -68,6 +68,56 @@ a small {
 
 ul{
   list-style-image:url('../images/bullet.png');
+
+  ul{
+    list-style: none;
+
+    li::before {
+      content: "\2022"; //disc
+      color: #e7ba66; 
+      font-weight: bold; 
+      display: inline-block; 
+      width: 1em; 
+      margin-left: -1em; 
+      margin-bottom: 5px;
+    }
+    
+    ul{
+      list-style: none;
+      margin-bottom: 5px;
+      li::before {
+        content: "\25e6"; //circle
+      }
+
+      ul{
+        list-style: none;
+        margin-bottom: 5px;
+        li::before {
+          content: "\2010"; //dash
+        }
+      }
+    }
+  }
+}
+
+ol {
+  list-style: none; 
+  counter-reset: li;
+
+  li {
+    counter-increment: li; 
+  }
+
+  li::before {
+    content: counter(li); 
+    color: #e7ba66;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1.5em;
+    margin-right: 0.5em; 
+    text-align: right; 
+    direction: rtl;
+  }
 }
 
 strong {
@@ -155,6 +205,10 @@ article{
   padding-bottom: 50px;
   h3{
     color: #e7ba66;
+  }
+
+  p{
+    margin-bottom: 10px;
   }
 }
 
@@ -270,6 +324,7 @@ section {
       font-size: 16px;
       text-align: left;
       padding-left: 30px;
+      
     }
     
   }

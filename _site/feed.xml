@@ -1,4 +1,209 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-16T01:21:54+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">What information can you retrieve from lateral movement performed via RDP?</title><link href="http://localhost:4000/blog/IRC/RDP-Bitmap-Cache" rel="alternate" type="text/html" title="What information can you retrieve from lateral movement performed via RDP?" /><published>2021-02-16T01:20:00+03:00</published><updated>2021-02-16T01:20:00+03:00</updated><id>http://localhost:4000/blog/IRC/RDP-Bitmap-Cache</id><content type="html" xml:base="http://localhost:4000/blog/IRC/RDP-Bitmap-Cache">&lt;p&gt;In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-02-21T20:05:27+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">How to prove there was a lateral movement using PsExec via EventLogs?</title><link href="http://localhost:4000/blog/IRC/PsExec-Lateral-Movement" rel="alternate" type="text/html" title="How to prove there was a lateral movement using PsExec via EventLogs?" /><published>2021-02-21T19:45:00+03:00</published><updated>2021-02-21T19:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/PsExec-Lateral-Movement</id><content type="html" xml:base="http://localhost:4000/blog/IRC/PsExec-Lateral-Movement">&lt;p&gt;In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-psexec&quot;&gt;What is PsExec?&lt;/h3&gt;
+&lt;p&gt;It’s a tool that lets you execute processes on other systems.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;An example of PsExec executing commands remotely&lt;/strong&gt;&lt;br /&gt;
+Let’s say we want to open a CMD window on a remote system&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psexec \\RemoteIP -u DomainName\UserName -p UserPassword cmd&lt;/code&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Break it down&lt;br /&gt;
+we have psexec already installed on our system, and we run it from CMD connecting to a RemoteIP system with a valid username/password there, and eventually start a CMD instance on the other system&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How does PsExec execute commands remotely?&lt;/strong&gt;&lt;br /&gt;
+Through interacting with Service Control Manager (SCM) via the network either through&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Remote Procedure Call (RPC) or&lt;/li&gt;
+  &lt;li&gt;Server Message Block (SMB).&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;PsExec Execution Steps (Example)&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Authentication completed on the target system&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;An Administrative share is mapped&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;PsExec service binary (PSEXESVC) is copied to the mapped share&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;PsExec communicates with SCM via the network to start the service binary (PSEXESVC)&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Starts the intended process/application on the target system&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;psexec-detection-via-eventlogs&quot;&gt;PsExec Detection via EventLogs&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Source System&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Security logs&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Event ID: 4688 (PsExec Process Creation)&lt;/li&gt;
+      &lt;li&gt;Event ID: 4689 (PsExec Process has been exited)&lt;/li&gt;
+      &lt;li&gt;Event ID: 4648
+        &lt;ul&gt;
+          &lt;li&gt;Account Name(Under Subject section): the already logged on user on the source system&lt;/li&gt;
+          &lt;li&gt;Account Name (Under Account whose credentials were used section): the used account on the target system&lt;/li&gt;
+          &lt;li&gt;Target Server Name: target system&lt;/li&gt;
+          &lt;li&gt;Process Name: Used process (if no change to PsExec name, the executable info will have PsExec)&lt;/li&gt;
+          &lt;li&gt;Network Address: target IP&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Target System&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;System logs
+    &lt;ul&gt;
+      &lt;li&gt;Event ID: 7045 (PSEXESVC was installed)&lt;/li&gt;
+      &lt;li&gt;Event ID: 7036 (PSEXESVC service state has changed)
+        &lt;ul&gt;
+          &lt;li&gt;This event should appear twice once service has started (Executing state), and the second time when the service gets stopped (Stopped state)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Security logs
+    &lt;ul&gt;
+      &lt;li&gt;Event ID: 4624
+        &lt;ul&gt;
+          &lt;li&gt;Successful logon&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Event ID: 4672
+        &lt;ul&gt;
+          &lt;li&gt;Special privileges assigned to new logon&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Event ID: 5140
+        &lt;ul&gt;
+          &lt;li&gt;A network share object was accessed&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Event ID: 5145
+        &lt;ul&gt;
+          &lt;li&gt;A network share object was checked to see whether client can be granted desired access&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Event ID: 4656
+        &lt;ul&gt;
+          &lt;li&gt;A handle to an object was requested&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Event ID: 4663
+        &lt;ul&gt;
+          &lt;li&gt;An attempt was made to access an object&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt;&lt;strong&gt;Eventlogs Parsing/Viewing Tools&lt;/strong&gt;&lt;br /&gt;&lt;/dt&gt;
+  &lt;dd&gt;EvtxEcmd&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;Event Log Explorer&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;Timeline Explorer&lt;br /&gt;&lt;/dd&gt;
+  &lt;dd&gt;etc.&lt;br /&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;&lt;br /&gt;
+Let’s check 4th medium challenge (Kiwi) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;p&gt;Used tools here will be EvtxEcmd to parse eventlogs, and Timeline Explorer to view and filter eventlogs.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;9th-challenge&quot;&gt;9th Challenge&lt;/h3&gt;
+
+&lt;p&gt;This challenge tells an appearance of kiwi logo (Mimikatz) appeared on DESKTOP-HUB666E (172.16.44.135), this is probably due to lateral movement from other systems.&lt;/p&gt;
+
+&lt;p&gt;Provided evidence
+	- DESKTOP-HUB666E eventlogs
+	- WIN-IL7M7CC6UVU (DC) eventlogs&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Challenge Questions&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Provide another domain user account used by attacker aside from King-Slayer&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Provide target system IP when this user was used&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To solve this challenge, we’ll parse only Security and System eventlogs from the two systems provided eventlogs to detect if there is lateral movement occurred between them using PsExec&lt;br /&gt;
+&lt;br /&gt;
+&lt;strong&gt;Parsing Steps for each machine&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Copy only Security and System eventlogs into a directory named Logs2, for example.&lt;/li&gt;
+  &lt;li&gt;Run EvtxECmd on each directory as mentioned below&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;EvtxEcmd used command&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DESKTOP-HUB666E (172.16.44.135)&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EvtxECmd.exe -d &quot;C:\Users\%username%\Downloads\Challenges\Medium - PassTheHash - Event Logs - Kiwi\Challenge\KingSlayerHost- EventLogs\Logs2&quot; --csv . --csvf KingSlayerHost.csv&lt;/code&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DC (WIN-IL7M7CC6UVU) (172.16.44.132)&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EvtxECmd.exe -d &quot;C:\Users\%username%\Downloads\Challenges\Medium - PassTheHash - Event Logs - Kiwi\Challenge\DC-EventLogs\Logs2&quot; --csv . --csvf DC.csv&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let’s view the two file logs using Timeline Explorer&lt;/p&gt;
+
+&lt;p&gt;To determine source of lateral movement we will use the mentioned event IDs 4688,4689, and 4648 looking for PsExec in them&lt;/p&gt;
+
+&lt;p&gt;This event “4648” shows the execution of PsExec on Feb 9&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Event time: 2020-02-09 13:59:13&lt;br /&gt;
+To break the event into what we know&lt;br /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Subject Account Name: KingSlayer (Already logged on user)&lt;br /&gt;
+Target User name: Daenerys (User account which will be used on the target system)&lt;br /&gt;
+Target Server Name: WIN-IL7M7CC6UVU&lt;br /&gt;
+Process Name: C:\temp\Niceone\PSTools\PsExec.exe&lt;br /&gt;
+Target IP Address: 172.16.44.132&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
+&lt;p&gt;IP address of target machine: 172.16.44.132&lt;br /&gt;
+Username: Daenerys&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;evidence-from-destination-system&quot;&gt;Evidence from destination system&lt;/h3&gt;
+
+&lt;p&gt;Security logs, Event IDs: 4624 &amp;amp; 4672&lt;br /&gt;
+Used pivot point: Daenerys&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+System logs, Event IDs: 7045 &amp;amp; 7036&lt;br /&gt;
+Used pivot point: PSEXESVC&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-4.png&quot; alt=&quot;fourth screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note&lt;br /&gt;
+In this example PSEXESVC service name wasn’t changed from default.
+This can be changed; however, using -r option once executing PsExec in the source system.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf&lt;/li&gt;
+  &lt;li&gt;https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648&lt;/li&gt;
+  &lt;li&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><summary type="html">In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.</summary></entry><entry><title type="html">What information can you retrieve from lateral movement performed via RDP?</title><link href="http://localhost:4000/blog/IRC/RDP-Bitmap-Cache" rel="alternate" type="text/html" title="What information can you retrieve from lateral movement performed via RDP?" /><published>2021-02-16T01:20:00+03:00</published><updated>2021-02-16T01:20:00+03:00</updated><id>http://localhost:4000/blog/IRC/RDP-Bitmap-Cache</id><content type="html" xml:base="http://localhost:4000/blog/IRC/RDP-Bitmap-Cache">&lt;p&gt;In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -466,7 +671,7 @@ I’ve already downloaded the question evidence into my current Downloads folder
 &lt;p&gt;&lt;img src=&quot;/blog/assets/images/210128-4.png&quot; alt=&quot;fourth screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;answer-to-the-challenge-1&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;F1a9-AFNIEJFJSSE&lt;/p&gt;</content><author><name>HejelyLab</name></author><summary type="html">Sometimes, we’re encountered with this question of whether for example a compromised account has accessed an important local/remote file.</summary></entry><entry><title type="html">Was there timestomping on the analyzed system?</title><link href="http://localhost:4000/blog/IRC/timestomping" rel="alternate" type="text/html" title="Was there timestomping on the analyzed system?" /><published>2021-01-25T23:50:00+03:00</published><updated>2021-01-25T23:50:00+03:00</updated><id>http://localhost:4000/blog/IRC/Timestomping</id><content type="html" xml:base="http://localhost:4000/blog/IRC/timestomping">&lt;h3 id=&quot;what-is-timestomping&quot;&gt;What is timestomping?&lt;br /&gt;&lt;/h3&gt;
+&lt;p&gt;F1a9-AFNIEJFJSSE&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">Sometimes, we’re encountered with this question of whether for example a compromised account has accessed an important local/remote file.</summary></entry><entry><title type="html">Was there timestomping on the analyzed system?</title><link href="http://localhost:4000/blog/IRC/timestomping" rel="alternate" type="text/html" title="Was there timestomping on the analyzed system?" /><published>2021-01-25T23:50:00+03:00</published><updated>2021-01-25T23:50:00+03:00</updated><id>http://localhost:4000/blog/IRC/Timestomping</id><content type="html" xml:base="http://localhost:4000/blog/IRC/timestomping">&lt;h3 id=&quot;what-is-timestomping&quot;&gt;What is timestomping?&lt;br /&gt;&lt;/h3&gt;
 &lt;p&gt;Timestomping is the ability from an attacker to modify original timestamps of folder/file in order to prevent the investigator from associating these timestamps with an attack period.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -531,4 +736,4 @@ Timeline Explorer doesn’t show timestamp in Created0x30 if it has the same dat
 
 &lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
 &lt;p&gt;FileName: Mod-File.txt&lt;br /&gt;
-Time Stamp: 19-01-2020 11:51:19&lt;/p&gt;</content><author><name>HejelyLab</name></author><summary type="html">What is timestomping? Timestomping is the ability from an attacker to modify original timestamps of folder/file in order to prevent the investigator from associating these timestamps with an attack period.</summary></entry></feed>
+Time Stamp: 19-01-2020 11:51:19&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><summary type="html">What is timestomping? Timestomping is the ability from an attacker to modify original timestamps of folder/file in order to prevent the investigator from associating these timestamps with an attack period.</summary></entry></feed>

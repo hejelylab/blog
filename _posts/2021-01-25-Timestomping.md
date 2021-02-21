@@ -3,6 +3,7 @@ layout: post
 title: Was there timestomping on the analyzed system?
 date: 2021-01-25 23:50
 permalink: /IRC/timestomping
+categories: IRC
 ---
 
 ### What is timestomping?<br>
