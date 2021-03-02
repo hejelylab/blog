@@ -24,7 +24,7 @@
 {"dateModified":"2021-01-25T23:50:00+03:00","datePublished":"2021-01-25T23:50:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/timestomping"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/timestomping","description":"What is timestomping? Timestomping is the ability from an attacker to modify original timestamps of folder/file in order to prevent the investigator from associating these timestamps with an attack period.","headline":"Was there timestomping on the analyzed system?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -70,10 +70,10 @@ In NTFS filesystem, each folder/file has one entry in MFT with two different tim
 
 <p>Mainly, standard information attributes are modifiable by users, whereas file name attributes tend to be modified by OS.</p>
 
-<p><strong>MFT Location</strong><br />
+<p><strong>MFT Location</strong>
 Root directory of the drive for example C:\$MFT</p>
 
-<p><strong>MFT Parsing Tools</strong><br /></p>
+<p><strong>MFT Parsing Tools</strong></p>
 <ul>
   <li>MFTECMD<br /></li>
   <li>analyzeMFT.py<br /></li>
@@ -82,14 +82,14 @@ Root directory of the drive for example C:\$MFT</p>
   <li>etc.<br /></li>
 </ul>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 1st easy challenge (Time Machine) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Let’s use MFTECmd to parse $MFT file, and then view the results using Timeline Explorer</p>
 
 <p>Link to download these two tools: https://ericzimmerman.github.io/#!index.md</p>
 
-<p><strong>MFTECmd used command</strong><br />
+<p><strong>MFTECmd used command</strong>
 <code class="language-plaintext highlighter-rouge">MFTECMD.exe -f "$MFT" --csv . --bn MFTOUTPUT.csv</code></p>
 
 <p>. means we would like to save the outputted CSV file to the same directory.</p>
@@ -101,7 +101,7 @@ Let’s check 1st easy challenge (Time Machine) in (incident-response-challenge.
 <p>The challenge focuses on changes on user’s desktop and the provided evidence is $MFT file; 
 therefore, we have parsed the file using MFTECMD. Now, we’ll view the parsed MFT using Timeline Explorer</p>
 
-<p><strong>Question Screenshot</strong><br /></p>
+<p><strong>Question Screenshot</strong></p>
 
 <p><img src="/blog/assets/images/210125-1.png" alt="first screenshot" /></p>
 
@@ -130,19 +130,34 @@ Time Stamp: 19-01-2020 11:51:19</p>
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
-    <a href="/blog/categories/#IRC">IRC</a>
-    
-    
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Timestomping">Timestomping</a>
+      
+      
+    </div>
   </div><a class="u-url" href="/blog/IRC/timestomping" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

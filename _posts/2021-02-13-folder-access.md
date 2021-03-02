@@ -3,6 +3,7 @@ layout: post
 title: What folders were accessed by a specific user?
 date: 2021-02-13 16:55
 permalink: /IRC/folder-access
+categories: [IRC, Digital Forensics, Shellbags]
 ---
 
 Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.
@@ -12,7 +13,7 @@ Sometimes we would like to know when investigating a user profile, if that user 
 ###  What are Shellbags?
 Shellbags are user's registry keys which help in storing user's view preferences of folders in Windows OS.
 
-**Example**<br>
+**Example**
 You visit a specific folder, modify the way items are presented in that folder. Once visiting the same folder again, the previous view preference is rendered from Shellbag registry keys.
 Therefore, Shellbags may provide us an evidence of user's access to folders.
 
@@ -28,7 +29,7 @@ NTUSER.DAT and UsrClass.dat Locations in each user's profile<br>
 : C:\Users\\\<username>\AppData\Local\Microsoft\Windows\UsrClass.dat<br>
 
 
-**Once parsing the mentioned two DAT files, Shellbag keys are in the following locations**<br>
+**Once parsing the mentioned two DAT files, Shellbag keys are in the following locations**
 : NTUSER.DAT\Software\Microsoft\Windows\Shell\BagMRU
 : NTUSER.DAT\Software\Microsoft\Windows\Shell\Bags
 : UsrClass.dat\Local Settings\Software\Microsoft\Windows\Shell\BagMRU
@@ -41,7 +42,7 @@ NTUSER.DAT and UsrClass.dat Locations in each user's profile<br>
 > Bags<br>
 : Stores actual folder customization data (window size, layout type, etc.)<br>
 
-**Shellbags Parsing Tools**<br>
+**Shellbags Parsing Tools**
 : Windows ShellBag Parser<br>
 : Shellbags.py<br>
 : ShellBags Explorer (View both NTUSER.DAT and UsrClass.dat)<br>
@@ -50,7 +51,7 @@ NTUSER.DAT and UsrClass.dat Locations in each user's profile<br>
 : RECmd<br>
 : etc.<br>
 
-**Example**<br>
+**Example**
 Let's check 1st medium challenge (Can't touch this) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be ShellBags Explorer

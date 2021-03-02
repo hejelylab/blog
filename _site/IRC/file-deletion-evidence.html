@@ -24,7 +24,7 @@
 {"dateModified":"2021-02-03T19:15:00+03:00","datePublished":"2021-02-03T19:15:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/file-deletion-evidence"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/file-deletion-evidence","description":"Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn’t have the file we’re looking for.","headline":"Was a specific file deleted from filesystem?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -67,7 +67,7 @@
 <h3 id="journaling">Journaling</h3>
 <p>Filesystems have the concept of journaling which allows the OS to keep a track of changes that are made to the filesystem itself.</p>
 
-<p><strong>NTFS FileSystem</strong><br />
+<p><strong>NTFS FileSystem</strong>
 NTFS filesystem has two journal types<br /></p>
 <ol>
   <li>USN Journal<br />
@@ -79,19 +79,19 @@ NTFS filesystem has two journal types<br /></p>
  This file keeps a track of changes to $MFT file<br /></li>
 </ol>
 
-<p><strong>Journals Parsing Tools</strong><br /></p>
+<p><strong>Journals Parsing Tools</strong></p>
 <ul>
   <li>ANJP<br /></li>
   <li>MFTECMD<br /></li>
   <li>etc.<br /></li>
 </ul>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 2nd medium challenge (CopyPaSTe) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Used tool here will be MFTECMD</p>
 
-<p><strong>MFTECMD used command</strong><br />
+<p><strong>MFTECMD used command</strong>
 <code class="language-plaintext highlighter-rouge">MFTECmd.exe -f "C:\Users\%username%\Downloads\Challenges\Medium - NTFS Journal Forensics - Copy PaSTe\Challenge\Artifacts-J\$J" --csv . --csvf J_CSV.csv</code></p>
 
 <p>-f points to $J file<br />
@@ -122,16 +122,40 @@ We’ll parse $J using MFTECMD to find out if such a file existed on the system 
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#NTFS">NTFS</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Journaling">Journaling</a>
+      
+      
+    </div>
   </div><a class="u-url" href="/blog/IRC/file-deletion-evidence" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

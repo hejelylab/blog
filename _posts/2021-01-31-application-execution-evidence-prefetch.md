@@ -3,6 +3,7 @@ layout: post
 title: Was a malicious application executed on system?
 date: 2021-01-31 23:00
 permalink: /IRC/application-execution-evidence-prefetch
+categories: [IRC, Digital Forensics]
 ---
 
 Sometimes, we would like to answer once a malicious application found on system, the following questions
@@ -22,10 +23,10 @@ This artifact can help us in identifying if an application was executed, time of
 
 All of this depends if this feature is enabled on system or not. Due to the low number of times Windows server boot up in comparison to workstations, this feature is disabled by default.
 
-**Prefetch Directory Location**<br>
+**Prefetch Directory Location**
 C:\Windows\Prefetch
 
-**Prefetch Example**<br>
+**Prefetch Example**
 CMD.EXE-12345678.pf
 
 Details
@@ -35,25 +36,25 @@ Details
 - Path Hash (8 Characters)<br>
 - .pf<br>
 
-> **Note**<br>
+> **Note**
 > Let's say you've found two entries relate to CMD, what does this mean?<br>
 > This means that CMD.EXE is located in two different locations and both of CMD instances were run at least 1 time.
 
-> **Note about Path Hash**<br>
+> **Note about Path Hash**
 > In case of the executed application is a hosting application such as rundll32.exe, svchost.exe, etc. the calculated hash isn't generated from only the path hash, but also other factors contribute into this such as the used command line when running the application, in addition to the /Prefetch command line argument if it was used.
 
-**Prefetch Parsing Tools**<br>
+**Prefetch Parsing Tools**
 - PECMD<br>
 - WinPrefetchView<br>
 - w10pf_parse<br>
 - etc.<br> 
 
-**Example**<br>
+**Example**
 Let's check 5th easy challenge (B4 Catch) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be PECMD
 
-**PECMD used command**<br>
+**PECMD used command**
 `PECmd.exe -f "C:\Users\%username%\Downloads\Challenges\Easy - Prefetches - B4-Catch\Challenge\Prefetch\SCVHOST.EXE-E4213C89.pf"`
 
 ---
@@ -79,6 +80,6 @@ The following screenshots shows the number of times it was executed, and the tim
 Number of execution: 4<br>
 Time Stamp: 07-02-2020 21:26<br>
 
-**References**<br>
+**References**
 1. https://www.hexacorn.com/blog/2012/06/13/prefetch-hash-calculator-a-hash-lookup-table-xpvistaw7w2k3w2k8/
 2. https://hiddenillusion.github.io/2016/05/10/go-prefetch-yourself/

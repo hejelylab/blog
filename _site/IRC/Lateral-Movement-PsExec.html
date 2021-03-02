@@ -13,18 +13,18 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts." />
 <meta property="og:description" content="In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts." />
-<link rel="canonical" href="http://localhost:4000/blog/IRC/PsExec-Lateral-Movement" />
-<meta property="og:url" content="http://localhost:4000/blog/IRC/PsExec-Lateral-Movement" />
+<link rel="canonical" href="http://localhost:4000/blog/IRC/Lateral-Movement-PsExec" />
+<meta property="og:url" content="http://localhost:4000/blog/IRC/Lateral-Movement-PsExec" />
 <meta property="og:site_name" content="Hejely Lab" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-21T19:45:00+03:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="How to prove there was a lateral movement using PsExec via EventLogs?" />
 <script type="application/ld+json">
-{"dateModified":"2021-02-21T19:45:00+03:00","datePublished":"2021-02-21T19:45:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/PsExec-Lateral-Movement"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/PsExec-Lateral-Movement","description":"In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.","headline":"How to prove there was a lateral movement using PsExec via EventLogs?","@context":"https://schema.org"}</script>
+{"dateModified":"2021-02-21T19:45:00+03:00","datePublished":"2021-02-21T19:45:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/Lateral-Movement-PsExec"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/Lateral-Movement-PsExec","description":"In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.","headline":"How to prove there was a lateral movement using PsExec via EventLogs?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -62,10 +62,12 @@
   <div id="artical-content" class="post-content e-content" itemprop="articleBody">
     <p>In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.</p>
 
+<hr />
+
 <h3 id="what-is-psexec">What is PsExec?</h3>
 <p>It’s a tool that lets you execute processes on other systems.</p>
 
-<p><strong>An example of PsExec executing commands remotely</strong><br />
+<p><strong>An example of PsExec executing commands remotely</strong>
 Let’s say we want to open a CMD window on a remote system<br />
 <code class="language-plaintext highlighter-rouge">psexec \\RemoteIP -u DomainName\UserName -p UserPassword cmd</code><br /></p>
 
@@ -76,7 +78,7 @@ we have psexec already installed on our system, and we run it from CMD connectin
 
 <p><br /></p>
 
-<p><strong>How does PsExec execute commands remotely?</strong><br />
+<p><strong>How does PsExec execute commands remotely?</strong>
 Through interacting with Service Control Manager (SCM) via the network either through</p>
 <ul>
   <li>Remote Procedure Call (RPC) or</li>
@@ -97,7 +99,7 @@ Through interacting with Service Control Manager (SCM) via the network either th
 
 <h3 id="psexec-detection-via-eventlogs">PsExec Detection via EventLogs</h3>
 
-<p><strong>Source System</strong><br /></p>
+<p><strong>Source System</strong></p>
 <ul>
   <li>Security logs<br />
     <ul>
@@ -116,7 +118,7 @@ Through interacting with Service Control Manager (SCM) via the network either th
   </li>
 </ul>
 
-<p><strong>Target System</strong><br /></p>
+<p><strong>Target System</strong></p>
 <ul>
   <li>System logs
     <ul>
@@ -165,14 +167,14 @@ Through interacting with Service Control Manager (SCM) via the network either th
 </ul>
 
 <dl>
-  <dt><strong>Eventlogs Parsing/Viewing Tools</strong><br /></dt>
+  <dt><strong>Eventlogs Parsing/Viewing Tools</strong></dt>
   <dd>EvtxEcmd<br /></dd>
   <dd>Event Log Explorer<br /></dd>
   <dd>Timeline Explorer<br /></dd>
   <dd>etc.<br /></dd>
 </dl>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 4th medium challenge (Kiwi) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Used tools here will be EvtxEcmd to parse eventlogs, and Timeline Explorer to view and filter eventlogs.</p>
@@ -203,7 +205,7 @@ Let’s check 4th medium challenge (Kiwi) in (incident-response-challenge.com) w
   <li>Run EvtxECmd on each directory as mentioned below<br /></li>
 </ol>
 
-<p><strong>EvtxEcmd used command</strong><br /></p>
+<p><strong>EvtxEcmd used command</strong></p>
 
 <blockquote>
   <p>DESKTOP-HUB666E (172.16.44.135)<br />
@@ -248,8 +250,7 @@ Used pivot point: Daenerys</p>
 
 <p><img src="/blog/assets/images/210221-3.png" alt="third screenshot" /></p>
 
-<p><br />
-System logs, Event IDs: 7045 &amp; 7036<br />
+<p>System logs, Event IDs: 7045 &amp; 7036<br />
 Used pivot point: PSEXESVC</p>
 
 <p><img src="/blog/assets/images/210221-4.png" alt="fourth screenshot" /></p>
@@ -260,7 +261,7 @@ In this example PSEXESVC service name wasn’t changed from default.
 This can be changed; however, using -r option once executing PsExec in the source system.</p>
 </blockquote>
 
-<p><strong>References</strong><br /></p>
+<p><strong>References</strong></p>
 <ol>
   <li>https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf</li>
   <li>https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648</li>
@@ -269,16 +270,37 @@ This can be changed; however, using -r option once executing PsExec in the sourc
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
-  </div><a class="u-url" href="/blog/IRC/PsExec-Lateral-Movement" hidden></a>
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Lateral Movement">Lateral Movement</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/IRC/Lateral-Movement-PsExec" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

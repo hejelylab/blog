@@ -33,7 +33,17 @@
         {{ content }}
 
         <hr>
-        <span id="footer"> &copy; {{ site.copyright }} {{ 'now' | date: "%Y"}}</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="{{ '/assets/minima-social-icons.svg#linkedin' | relative_url }}"></use></svg>-->
+           <a href="https://www.linkedin.com/in/{{ site.linkedin_username| cgi_escape | escape }}">{{ site.linkedin_username| escape }}</a>
+          
+
+           <p>&copy; {{ site.copyright }} {{ 'now' | date: "%Y"}}</p>
+        </div>
+        
+        
+        
 
       </section>
 

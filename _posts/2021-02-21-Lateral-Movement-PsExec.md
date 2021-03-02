@@ -2,16 +2,19 @@
 layout: post
 title: How to prove there was a lateral movement using PsExec via EventLogs?
 date: 2021-02-21 19:45
-permalink: /IRC/PsExec-Lateral-Movement
+permalink: /IRC/Lateral-Movement-PsExec
+categories: [IRC, Digital Forensics, Lateral Movement]
 ---
 
 In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.
+
+---
 
 ###  What is PsExec?
 It's a tool that lets you execute processes on other systems.
 
 
-**An example of PsExec executing commands remotely**<br>
+**An example of PsExec executing commands remotely**
 Let's say we want to open a CMD window on a remote system<br>
 `psexec \\RemoteIP -u DomainName\UserName -p UserPassword cmd`<br>
 
@@ -20,7 +23,7 @@ we have psexec already installed on our system, and we run it from CMD connectin
 
 <br>
 
-**How does PsExec execute commands remotely?**<br>
+**How does PsExec execute commands remotely?**
 Through interacting with Service Control Manager (SCM) via the network either through 
 - Remote Procedure Call (RPC) or 
 - Server Message Block (SMB).<br>
@@ -38,7 +41,7 @@ Through interacting with Service Control Manager (SCM) via the network either th
 
 ### PsExec Detection via EventLogs
 
-**Source System**<br>
+**Source System**
 - Security logs<br>
     - Event ID: 4688 (PsExec Process Creation)
     -  Event ID: 4689 (PsExec Process has been exited)
@@ -49,7 +52,7 @@ Through interacting with Service Control Manager (SCM) via the network either th
 	    -  Process Name: Used process (if no change to PsExec name, the executable info will have PsExec)
 	    -  Network Address: target IP
 
-**Target System**<br>
+**Target System**
 - System logs
 	- Event ID: 7045 (PSEXESVC was installed)
 	- Event ID: 7036 (PSEXESVC service state has changed)
@@ -68,14 +71,14 @@ Through interacting with Service Control Manager (SCM) via the network either th
 	- Event ID: 4663
 		- An attempt was made to access an object
 
-**Eventlogs Parsing/Viewing Tools**<br>
+**Eventlogs Parsing/Viewing Tools**
 : EvtxEcmd<br>
 : Event Log Explorer<br>
 : Timeline Explorer<br>
 : etc.<br>
 
 
-**Example**<br>
+**Example**
 Let's check 4th medium challenge (Kiwi) in (incident-response-challenge.com) website and try to solve it.
 
 Used tools here will be EvtxEcmd to parse eventlogs, and Timeline Explorer to view and filter eventlogs.
@@ -102,7 +105,7 @@ To solve this challenge, we'll parse only Security and System eventlogs from the
 1. Copy only Security and System eventlogs into a directory named Logs2, for example.
 2. Run EvtxECmd on each directory as mentioned below<br>
 
-**EvtxEcmd used command**<br>
+**EvtxEcmd used command**
 
 > DESKTOP-HUB666E (172.16.44.135)<br>
 `EvtxECmd.exe -d "C:\Users\%username%\Downloads\Challenges\Medium - PassTheHash - Event Logs - Kiwi\Challenge\KingSlayerHost- EventLogs\Logs2" --csv . --csvf KingSlayerHost.csv`
@@ -142,7 +145,6 @@ Used pivot point: Daenerys
 
 ![third screenshot]({{site.baseurl}}/assets/images/210221-3.png)
 
-<br>
 System logs, Event IDs: 7045 & 7036<br>
 Used pivot point: PSEXESVC
 
@@ -153,7 +155,7 @@ In this example PSEXESVC service name wasn't changed from default.
 This can be changed; however, using -r option once executing PsExec in the source system.
 
 
-**References**<br>
+**References**
 1. https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf
 2. https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648
 3. https://docs.microsoft.com/en-us/sysinternals/downloads/psexec

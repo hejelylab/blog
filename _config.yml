@@ -21,10 +21,17 @@ baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://github.com/hejelylab" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
+linkedin_username: abdulazizalhejely
 
 categories:
   IRC
   Digital Forensics
+  Timestomping
+  NTFS
+  Journaling
+  Shellbags
+  Lateral Movement
+  Persistence
 
 
 author: HejelyLab

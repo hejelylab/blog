@@ -24,7 +24,7 @@
 {"dateModified":"2021-01-31T23:00:00+03:00","datePublished":"2021-01-31T23:00:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/application-execution-evidence-prefetch"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/application-execution-evidence-prefetch","description":"Sometimes, we would like to answer once a malicious application found on system, the following questions","headline":"Was a malicious application executed on system?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -78,10 +78,10 @@ This artifact can help us in identifying if an application was executed, time of
 
 <p>All of this depends if this feature is enabled on system or not. Due to the low number of times Windows server boot up in comparison to workstations, this feature is disabled by default.</p>
 
-<p><strong>Prefetch Directory Location</strong><br />
+<p><strong>Prefetch Directory Location</strong>
 C:\Windows\Prefetch</p>
 
-<p><strong>Prefetch Example</strong><br />
+<p><strong>Prefetch Example</strong>
 CMD.EXE-12345678.pf</p>
 
 <p>Details</p>
@@ -94,17 +94,17 @@ CMD.EXE-12345678.pf</p>
 </ul>
 
 <blockquote>
-  <p><strong>Note</strong><br />
+  <p><strong>Note</strong>
 Let’s say you’ve found two entries relate to CMD, what does this mean?<br />
 This means that CMD.EXE is located in two different locations and both of CMD instances were run at least 1 time.</p>
 </blockquote>
 
 <blockquote>
-  <p><strong>Note about Path Hash</strong><br />
+  <p><strong>Note about Path Hash</strong>
 In case of the executed application is a hosting application such as rundll32.exe, svchost.exe, etc. the calculated hash isn’t generated from only the path hash, but also other factors contribute into this such as the used command line when running the application, in addition to the /Prefetch command line argument if it was used.</p>
 </blockquote>
 
-<p><strong>Prefetch Parsing Tools</strong><br /></p>
+<p><strong>Prefetch Parsing Tools</strong></p>
 <ul>
   <li>PECMD<br /></li>
   <li>WinPrefetchView<br /></li>
@@ -112,12 +112,12 @@ In case of the executed application is a hosting application such as rundll32.ex
   <li>etc.<br /></li>
 </ul>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 5th easy challenge (B4 Catch) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Used tool here will be PECMD</p>
 
-<p><strong>PECMD used command</strong><br />
+<p><strong>PECMD used command</strong>
 <code class="language-plaintext highlighter-rouge">PECmd.exe -f "C:\Users\%username%\Downloads\Challenges\Easy - Prefetches - B4-Catch\Challenge\Prefetch\SCVHOST.EXE-E4213C89.pf"</code></p>
 
 <hr />
@@ -144,7 +144,7 @@ The following screenshots shows the number of times it was executed, and the tim
 <p>Number of execution: 4<br />
 Time Stamp: 07-02-2020 21:26<br /></p>
 
-<p><strong>References</strong><br /></p>
+<p><strong>References</strong></p>
 <ol>
   <li>https://www.hexacorn.com/blog/2012/06/13/prefetch-hash-calculator-a-hash-lookup-table-xpvistaw7w2k3w2k8/</li>
   <li>https://hiddenillusion.github.io/2016/05/10/go-prefetch-yourself/</li>
@@ -152,16 +152,34 @@ Time Stamp: 07-02-2020 21:26<br /></p>
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      
+      
+    </div>
   </div><a class="u-url" href="/blog/IRC/application-execution-evidence-prefetch" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

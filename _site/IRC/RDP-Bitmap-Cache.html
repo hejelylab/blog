@@ -24,7 +24,7 @@
 {"dateModified":"2021-02-16T01:20:00+03:00","datePublished":"2021-02-16T01:20:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/RDP-Bitmap-Cache"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/RDP-Bitmap-Cache","description":"In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.","headline":"What information can you retrieve from lateral movement performed via RDP?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -67,11 +67,11 @@
 <h3 id="what-is-rdp-bitmap-cache">What is RDP bitmap cache?</h3>
 <p>When a user connects to another system using RDP, small size (bitmap) images are stored in their RDP profile files, so that once the same image is to be used in the session it can be fetched/pulled quicker. And the overall RDP session experience is enhanced in case of a slow connection. This artifact can help us sometimes in identifying what was the user seeing in their RDP sessions.</p>
 
-<p><strong>RDP Bitmap Cache Location (Every user profile)</strong><br />
+<p><strong>RDP Bitmap Cache Location (Every user profile)</strong>
 C:\Users\&lt;username&gt;\AppData\Local\Microsoft\Terminal Server Client\Cache</p>
 
 <dl>
-  <dt><strong>RDP Bitmap Cache Parsing Tools</strong><br /></dt>
+  <dt><strong>RDP Bitmap Cache Parsing Tools</strong></dt>
   <dd>bmc-tools.py<br /></dd>
   <dd>
     <blockquote>
@@ -81,10 +81,10 @@ Tool Link: <a href="https://github.com/ANSSI-FR/bmc-tools">bmc-tools</a></p>
   </dd>
 </dl>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 8th medium challenge (Notes) in (incident-response-challenge.com) website and try to solve it.</p>
 
-<p><strong>bmc-tools used command</strong><br />
+<p><strong>bmc-tools used command</strong>
 Note: Python needs to be installed beforehand</p>
 
 <p><code class="language-plaintext highlighter-rouge">mkdir RDPBitMapOutput</code><br />
@@ -117,16 +117,34 @@ The provided evidence is the user’s profile as well as eventlogs.</p>
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      
+      
+    </div>
   </div><a class="u-url" href="/blog/IRC/RDP-Bitmap-Cache" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

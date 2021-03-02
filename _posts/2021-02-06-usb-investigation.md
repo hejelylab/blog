@@ -3,6 +3,7 @@ layout: post
 title: Was a USB connected to system?
 date: 2021-02-06 13:45
 permalink: /IRC/usb-investigation
+categories: [IRC, Digital Forensics]
 ---
 
 Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its
@@ -16,22 +17,22 @@ Sometimes, we would like to investigate if a USB connected to a system, and prov
 To investigate if a USB was connected or not, SYSTEM registry hive can be parsed looking for USBSTOR registry key.
 
 
-**System Registry Files Location**<br>
+**System Registry Files Location**
 : %Windir%\System32\Config<br>
 : One of which is SYSTEM hive
 
-<br>
-**USBSTOR Registry Key Location inside SYSTEM hive**<br>
+
+**USBSTOR Registry Key Location inside SYSTEM hive**
 : SYSTEM\CurrentControlSet\Enum\USBSTOR
 
-<br>	
-**Note**<br>
+
+**Note**
 I have parsed SYSTEM hive and I noticed ControlSet00* and not CurrentControlSet<br>
 : ControlSet001 is the last control set the system booted with<br>
 : ControlSet002 is the last known good control set<br>
 <br>
 
-**USB Investigation Tools**<br>
+**USB Investigation Tools**
 : Registry explorer (SYSTEM Hive)<br>
 : USB Detective<br>
 : RECmd<br>
@@ -39,11 +40,11 @@ I have parsed SYSTEM hive and I noticed ControlSet00* and not CurrentControlSet<
 : etc.<br>
 <br>
 
-**Hunt for USB Connection**<br>
+**Hunt for USB Connection**
 If you would like to know whenever a new external device is connected or enabled, look for this event ID<br>
 : - Security Logs, Event ID: 6416
 
-**Example**<br>
+**Example**
 Let's check 2nd easy challenge (Hello DoK) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be Registry Explorer
@@ -79,6 +80,6 @@ The followng screenshot shows these evidence
 
 ![third screenshot]({{site.baseurl}}/assets/images/210206-3.png)
 
-**References**<br>
+**References**
 1.https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416
 2.https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf

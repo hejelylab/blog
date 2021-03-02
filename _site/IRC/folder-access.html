@@ -24,7 +24,7 @@
 {"dateModified":"2021-02-13T16:55:00+03:00","datePublished":"2021-02-13T16:55:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/folder-access"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/folder-access","description":"Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.","headline":"What folders were accessed by a specific user?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -67,7 +67,7 @@
 <h3 id="what-are-shellbags">What are Shellbags?</h3>
 <p>Shellbags are user’s registry keys which help in storing user’s view preferences of folders in Windows OS.</p>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 You visit a specific folder, modify the way items are presented in that folder. Once visiting the same folder again, the previous view preference is rendered from Shellbag registry keys.
 Therefore, Shellbags may provide us an evidence of user’s access to folders.</p>
 
@@ -93,7 +93,7 @@ Therefore, Shellbags may provide us an evidence of user’s access to folders.</
 </blockquote>
 
 <dl>
-  <dt><strong>Once parsing the mentioned two DAT files, Shellbag keys are in the following locations</strong><br /></dt>
+  <dt><strong>Once parsing the mentioned two DAT files, Shellbag keys are in the following locations</strong></dt>
   <dd>NTUSER.DAT\Software\Microsoft\Windows\Shell\BagMRU</dd>
   <dd>NTUSER.DAT\Software\Microsoft\Windows\Shell\Bags</dd>
   <dd>UsrClass.dat\Local Settings\Software\Microsoft\Windows\Shell\BagMRU</dd>
@@ -116,7 +116,7 @@ Therefore, Shellbags may provide us an evidence of user’s access to folders.</
 </blockquote>
 
 <dl>
-  <dt><strong>Shellbags Parsing Tools</strong><br /></dt>
+  <dt><strong>Shellbags Parsing Tools</strong></dt>
   <dd>Windows ShellBag Parser<br /></dd>
   <dd>Shellbags.py<br /></dd>
   <dd>ShellBags Explorer (View both NTUSER.DAT and UsrClass.dat)<br /></dd>
@@ -126,7 +126,7 @@ Therefore, Shellbags may provide us an evidence of user’s access to folders.</
   <dd>etc.<br /></dd>
 </dl>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 1st medium challenge (Can’t touch this) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Used tool here will be ShellBags Explorer</p>
@@ -150,16 +150,37 @@ Let’s check 1st medium challenge (Can’t touch this) in (incident-response-ch
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Shellbags">Shellbags</a>
+      
+      
+    </div>
   </div><a class="u-url" href="/blog/IRC/folder-access" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

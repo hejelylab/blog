@@ -24,7 +24,7 @@
 {"dateModified":"2021-02-06T13:45:00+03:00","datePublished":"2021-02-06T13:45:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/usb-investigation"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/usb-investigation","description":"Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its Maker Serial Number/UID USB Connection Date/Time","headline":"Was a USB connected to system?","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=fd09367eee912c8ebb3d4befb774097fc7a4ce73">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -73,26 +73,24 @@
 <p>To investigate if a USB was connected or not, SYSTEM registry hive can be parsed looking for USBSTOR registry key.</p>
 
 <dl>
-  <dt><strong>System Registry Files Location</strong><br /></dt>
+  <dt><strong>System Registry Files Location</strong></dt>
   <dd>%Windir%\System32\Config<br /></dd>
   <dd>One of which is SYSTEM hive</dd>
-  <dt><br /></dt>
-  <dt><strong>USBSTOR Registry Key Location inside SYSTEM hive</strong><br /></dt>
+  <dt><strong>USBSTOR Registry Key Location inside SYSTEM hive</strong></dt>
   <dd>SYSTEM\CurrentControlSet\Enum\USBSTOR</dd>
-  <dt><br />	</dt>
-  <dt><strong>Note</strong><br /></dt>
+  <dt><strong>Note</strong></dt>
   <dt>I have parsed SYSTEM hive and I noticed ControlSet00* and not CurrentControlSet<br /></dt>
   <dd>ControlSet001 is the last control set the system booted with<br /></dd>
   <dd>ControlSet002 is the last known good control set<br />
 <br /></dd>
-  <dt><strong>USB Investigation Tools</strong><br /></dt>
+  <dt><strong>USB Investigation Tools</strong></dt>
   <dd>Registry explorer (SYSTEM Hive)<br /></dd>
   <dd>USB Detective<br /></dd>
   <dd>RECmd<br /></dd>
   <dd>RegRipper<br /></dd>
   <dd>etc.<br />
 <br /></dd>
-  <dt><strong>Hunt for USB Connection</strong><br /></dt>
+  <dt><strong>Hunt for USB Connection</strong></dt>
   <dt>If you would like to know whenever a new external device is connected or enabled, look for this event ID<br /></dt>
   <dd>
     <ul>
@@ -101,7 +99,7 @@
   </dd>
 </dl>
 
-<p><strong>Example</strong><br />
+<p><strong>Example</strong>
 Let’s check 2nd easy challenge (Hello DoK) in (incident-response-challenge.com) website and try to solve it.</p>
 
 <p>Used tool here will be Registry Explorer</p>
@@ -139,22 +137,40 @@ SYSTEM\ControlSet001\Enum\USBSTOR</p>
 
 <p><img src="/blog/assets/images/210206-3.png" alt="third screenshot" /></p>
 
-<p><strong>References</strong><br />
+<p><strong>References</strong>
 1.https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416
 2.https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf</p>
 
   </div>
 
-   
-  <div class="post-categories">
-    
-    
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      
+      
+    </div>
   </div><a class="u-url" href="/blog/IRC/usb-investigation" hidden></a>
 </article>
 
 
         <hr>
-        <span id="footer"> &copy; HejelyLab 2021</span>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
 
       </section>
 

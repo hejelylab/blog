@@ -206,7 +206,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 .highlight .ss { color: #90a959; }
 
-body { padding: 0px 0 20px 0px; margin: 0px; font: 14px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #f0e7d5; font-weight: normal; background: #252525; background-attachment: fixed !important; background: linear_gradient(#2a2a29, #1c1c1c); }
+body { padding: 0px 0 20px 0px; margin: 0px; font: 14px/1.5 "OpenSansRegular", "Helvetica Neue", Helvetica, Arial, sans-serif; color: #faf6ef; font-weight: normal; background: #252525; }
 
 h1, h2, h3, h4, h5, h6 { color: #e8e8e8; margin: 0 0 10px; font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; }
 
@@ -218,16 +218,12 @@ h1 { font-size: 28px; }
 
 h2 { font-size: 24px; }
 
-h4, h5, h6 { color: #e8e8e8; }
-
 h3 { font-size: 18px; line-height: 24px; font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif !important; font-weight: normal; color: #b6b6b6; }
 
 a { color: #e7ba66; font-weight: 400; text-decoration: none; }
 a:hover { color: #ffeb9b; }
 
-a small { font-size: 11px; color: #666; margin-top: -0.6em; display: block; }
-
-ul { list-style-image: url("../images/bullet.png"); }
+ul { list-style-image: url("../images/bullet.png"); margin-bottom: 5px; }
 ul ul { list-style: none; }
 ul ul li::before { content: "\2022"; color: #e7ba66; font-weight: bold; display: inline-block; width: 1em; margin-left: -1em; margin-bottom: 5px; }
 ul ul ul { list-style: none; margin-bottom: 5px; }
@@ -243,11 +239,11 @@ strong { font-family: 'OpenSansBold', "Helvetica Neue", Helvetica, Arial, sans-s
 
 .wrapper { max-width: 750px; margin: 0 auto; position: relative; padding: 0 20px; }
 
-section img { max-width: 100%; }
+section img { max-width: 100%; padding-top: 15px; padding-bottom: 15px; }
 
-blockquote { border-left: 3px solid #e7ba66; margin: 0; padding: 0 0 0 20px; font-style: italic; }
+blockquote { border-left: 3px solid #e7ba66; background-color: #2e2e2e; margin: 0; padding: 0 0 0 20px; }
 
-code { font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace; color: #c5e0b4; font-size: 13px; margin: 0 4px; padding: 4px 6px; border-radius: 2px; }
+code { font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace; color: #9cc484; font-size: 13px; }
 
 pre { padding: 8px 15px; background: #191919; border-radius: 2px; border: 1px solid #121212; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); overflow: auto; overflow-y: hidden; }
 pre code { color: #efefef; text-shadow: 0px 1px 0px #000; margin: 0; padding: 0; }
@@ -263,8 +259,9 @@ hr { color: #e8e8e8; margin: 0 0 20px; }
 dt { color: #F0E7D5; font-family: 'OpenSansSemibold', "Helvetica Neue", Helvetica, Arial, sans-serif !important; font-weight: normal; }
 
 article { padding-bottom: 50px; }
-article h3 { color: #e7ba66; }
-article p { margin-bottom: 10px; }
+article h3 { color: #e7ba66; margin-top: 10px; }
+article p { margin-bottom: 5px; }
+article strong { display: block; color: #ffeb9b; padding-bottom: 10px; padding-top: 10px; }
 
 #artical-content { padding-left: 30px; padding-top: 20px; }
 #artical-content hr { margin: auto; margin-top: 30px; margin-bottom: 30px; width: 10%; border: 5px dotted #e7ba66; border-bottom: none; }
@@ -285,9 +282,22 @@ section #content h1 { color: #e7ba66; font-family: 'OpenSansLight', "Helvetica N
 section #content p { color: #d7cfbe; font-family: 'OpenSansLight', "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; font-size: 16px; text-align: left; padding-left: 30px; }
 section #importantheader { font-weight: bold; border-left: 4px solid #e7ba66; padding-left: 5px; }
 
-#footer { font-size: 11px; font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; color: #696969; margin-top: -10px; text-align: center; display: block; }
+.categories-container { margin-left: 30px; margin-top: 30px; font-size: smaller; }
+
+.post-categories { margin-left: 30px; margin-right: 15px; }
+.post-categories a { background-color: #e7ba66; color: #434343; font-size: smaller; font-weight: bold; border-radius: 15px; padding: 3px 15px; }
+.post-categories a:hover { background-color: #ffeb9b; }
+
+.category-section { margin-left: 30px; }
+
+#category-title { font-weight: bold; border-left: 4px solid #e7ba66; padding-left: 5px; }
+
+#category-item { margin-left: 10px; }
+
+#footer { font-size: 11px; font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; color: #696969; margin-top: -10px; text-align: center; display: block; margin: auto; }
 #footer.left { float: left; }
 #footer.right { float: right; }
+#footer svg { fill: #e7ba66; height: 17px; width: 17px; }
 
 @media print, screen and (max-width: 720px) { #title .credits { display: block; width: 100%; line-height: 30px; text-align: center; }
   #title .credits .left { float: none; display: block; }

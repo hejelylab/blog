@@ -1,0 +1,169 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to find out if there is persistence using Registry run keys or Startup Folders? | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="How to find out if there is persistence using Registry run keys or Startup Folders?" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in." />
+<meta property="og:description" content="Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in." />
+<link rel="canonical" href="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys" />
+<meta property="og:url" content="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-02T18:15:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to find out if there is persistence using Registry run keys or Startup Folders?" />
+<script type="application/ld+json">
+{"dateModified":"2021-03-02T18:15:00+03:00","datePublished":"2021-03-02T18:15:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys","description":"Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.","headline":"How to find out if there is persistence using Registry run keys or Startup Folders?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=8c6eb4fcb7efac0691d042ad60a4fab7282e4122">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>Welcome to this blog.</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">How to find out if there is persistence using Registry run keys or Startup Folders?</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-03-02T18:15:00+03:00" itemprop="datePublished">Mar 2, 2021
+      </time></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <p>Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.</p>
+
+<hr />
+
+<h3 id="what-are-the-startup-folders">What are the startup folders?</h3>
+<p>They are folders that are checked whenever each user logs in<br /></p>
+<blockquote>
+  <p>First path is under each user’s profile<br />
+C:\Users\&lt;username&gt;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</p>
+</blockquote>
+
+<blockquote>
+  <p>Second path is system wide path for all users<br />
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="registry-run-keys">Registry-Run-Keys</h3>
+<blockquote>
+  <p>Most used run keys for persistence are <br />
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce</p>
+</blockquote>
+
+<p><br /></p>
+
+<dl>
+  <dt><strong>Registry Parsing Tools</strong></dt>
+  <dd>Registry explorer (SYSTEM Hive)<br /></dd>
+  <dd>RECmd<br /></dd>
+  <dd>RegRipper<br /></dd>
+  <dd>etc.<br /></dd>
+</dl>
+
+<p><strong>Example</strong>
+Let’s check 7th easy challenge (Sports) in (incident-response-challenge.com) website and try to solve it.</p>
+
+<p>Used tools here will be Registry Explorer to navigate through the registry keys</p>
+
+<hr />
+
+<h3 id="10th-challenge">10th Challenge</h3>
+
+<p>This challenge asks to look at the user’s profile “Sansa”, as there might be something when waking up!</p>
+
+<p><img src="/blog/assets/images/210302-1.png" alt="first screenshot" /></p>
+
+<p>We’ll parse NTUSER.DAT of the mentioned user, and navigate to Run (User run key) using the existing bookmarked keys.</p>
+
+<p><img src="/blog/assets/images/210302-2.png" alt="second screenshot" /></p>
+
+<p>We can see an executable runs everytime this user logs in, which is under public user profile</p>
+
+<p><img src="/blog/assets/images/210302-3.png" alt="third screenshot" /></p>
+
+<h3 id="answer-to-the-challenge">Answer to the challenge</h3>
+<p>Frag-AGREWEHDFG.exe</p>
+
+<p><strong>References</strong></p>
+<ol>
+  <li>https://attack.mitre.org/techniques/T1547/001/</li>
+</ol>
+
+  </div>
+
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories/#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories/#Persistence">Persistence</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/IRC/Persistence-Registry-Run-Keys" hidden></a>
+</article>
+
+
+        <hr>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
+
+      </section>
+
+    </div>
+
+    
+  </body>
+</html>

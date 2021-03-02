@@ -3,6 +3,7 @@ layout: post
 title: Was a specific file deleted from filesystem?
 date: 2021-02-03 19:15
 permalink: /IRC/file-deletion-evidence
+categories: [IRC, Digital Forensics, NTFS, Journaling]
 ---
 
 Sometimes, we would like to prove if a specific file existed at sometime in filesystem, and then got deleted. That is, the received image doesn't have the file we're looking for.
@@ -12,7 +13,7 @@ Sometimes, we would like to prove if a specific file existed at sometime in file
 ### Journaling
 Filesystems have the concept of journaling which allows the OS to keep a track of changes that are made to the filesystem itself.
 
-**NTFS FileSystem**<br>
+**NTFS FileSystem**
 NTFS filesystem has two journal types<br>
 1. USN Journal<br>
 	Purpose: keep track of changes to files/directories in the filesystem with the reason of each and every change<br>
@@ -23,17 +24,17 @@ NTFS filesystem has two journal types<br>
 	This file keeps a track of changes to $MFT file<br>
 	
 
-**Journals Parsing Tools**<br>
+**Journals Parsing Tools**
 - ANJP<br>
 - MFTECMD<br>
 - etc.<br>
 
-**Example**<br>
+**Example**
 Let's check 2nd medium challenge (CopyPaSTe) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be MFTECMD
 
-**MFTECMD used command**<br>
+**MFTECMD used command**
 `MFTECmd.exe -f "C:\Users\%username%\Downloads\Challenges\Medium - NTFS Journal Forensics - Copy PaSTe\Challenge\Artifacts-J\$J" --csv . --csvf J_CSV.csv`
 
 -f points to $J file<br>

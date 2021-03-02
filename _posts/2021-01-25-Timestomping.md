@@ -3,7 +3,7 @@ layout: post
 title: Was there timestomping on the analyzed system?
 date: 2021-01-25 23:50
 permalink: /IRC/timestomping
-categories: IRC
+categories: [IRC,Timestomping]
 ---
 
 ### What is timestomping?<br>
@@ -16,17 +16,17 @@ In NTFS filesystem, each folder/file has one entry in MFT with two different tim
 
 Mainly, standard information attributes are modifiable by users, whereas file name attributes tend to be modified by OS.
 
-**MFT Location**<br>
+**MFT Location**
 Root directory of the drive for example C:\\$MFT
 
-**MFT Parsing Tools**<br>
+**MFT Parsing Tools**
 - MFTECMD<br>
 - analyzeMFT.py<br>
 - Mft2Csv<br>
 - MFTExplorer<br>
 - etc.<br> 
 
-**Example**<br>
+**Example**
 Let's check 1st easy challenge (Time Machine) in (incident-response-challenge.com) website and try to solve it.
 
 Let's use MFTECmd to parse $MFT file, and then view the results using Timeline Explorer
@@ -34,7 +34,7 @@ Let's use MFTECmd to parse $MFT file, and then view the results using Timeline E
 Link to download these two tools: https://ericzimmerman.github.io/#!index.md
 
 
-**MFTECmd used command**<br>
+**MFTECmd used command**
 `MFTECMD.exe -f "$MFT" --csv . --bn MFTOUTPUT.csv`
 
 . means we would like to save the outputted CSV file to the same directory.
@@ -46,7 +46,7 @@ Link to download these two tools: https://ericzimmerman.github.io/#!index.md
 The challenge focuses on changes on user's desktop and the provided evidence is $MFT file; 
 therefore, we have parsed the file using MFTECMD. Now, we'll view the parsed MFT using Timeline Explorer
 
-**Question Screenshot**<br>
+**Question Screenshot**
 
 ![first screenshot]({{site.baseurl}}/assets/images/210125-1.png)
 

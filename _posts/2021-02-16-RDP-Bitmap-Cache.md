@@ -3,6 +3,7 @@ layout: post
 title: What information can you retrieve from lateral movement performed via RDP?
 date: 2021-02-16 01:20
 permalink: /IRC/RDP-Bitmap-Cache
+categories: [IRC, Digital Forensics]
 ---
 
 In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.
@@ -12,18 +13,18 @@ In case of an investigation which consists of lateral movement using RDP, one of
 ###  What is RDP bitmap cache?
 When a user connects to another system using RDP, small size (bitmap) images are stored in their RDP profile files, so that once the same image is to be used in the session it can be fetched/pulled quicker. And the overall RDP session experience is enhanced in case of a slow connection. This artifact can help us sometimes in identifying what was the user seeing in their RDP sessions. 
 
-**RDP Bitmap Cache Location (Every user profile)**<br>
+**RDP Bitmap Cache Location (Every user profile)**
 C:\Users\\\<username>\AppData\Local\Microsoft\Terminal Server Client\Cache
 
-**RDP Bitmap Cache Parsing Tools**<br>
+**RDP Bitmap Cache Parsing Tools**
 : bmc-tools.py<br>
 : > This is the only tool I have used so far and it does the job perfectly<br>
 Tool Link: [bmc-tools](https://github.com/ANSSI-FR/bmc-tools)
 
-**Example**<br>
+**Example**
 Let's check 8th medium challenge (Notes) in (incident-response-challenge.com) website and try to solve it.
 
-**bmc-tools used command**<br>
+**bmc-tools used command**
 Note: Python needs to be installed beforehand
 
 `mkdir RDPBitMapOutput`<br>

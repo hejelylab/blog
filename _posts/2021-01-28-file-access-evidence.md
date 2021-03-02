@@ -17,17 +17,17 @@ Jumplists are means to ease user's access to the frequently/previously accessed 
 
 This will provide us an opportunity to see if an an application file was opened under a user profile or not.
 
-**JumpLists Locations**<br>
+**JumpLists Locations**
 They are in each user's pofile in these two directories<br>
 C:\Users\\\<username\>\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations<br>
 C:\Users\\\<username\>\AppData\Roaming\Microsoft\Windows\Recent\CustomDestinations<br>
 
-**JumpLists Parsing Tools**<br>
+**JumpLists Parsing Tools**
 - Jumplist Explorer (GUI based Jump List viewer)<br>
 - JLECmd (Jump List parser)<br>
 - etc.<br> 
 
-**Example**<br>
+**Example**
 Let's check 3rd easy challenge (Bling-Bling) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be Jumplist Explorer.
@@ -63,23 +63,23 @@ These LNK files usually get created once opening a local/remote file.
 
 This can also be helpful sometimes even if the original (target) file has been removed.
 
-**LNK files Locations**<br>
+**LNK files Locations**
 They can be anywhere in filesystem; however, the following two directories are interesting ones to parse when trying to seach for an evidence related to whether a file has been accessed/opened or not.
 
 C:\Users\\\<username\>\AppData\Roaming\Microsoft\Windows\Recent<br>
 C:\Users\\\<username\>\AppData\Roaming\Microsoft\Office\Recent
 
-**LNK Files Parsing Tools**<br>
+**LNK Files Parsing Tools**
 - LECMD<br>
 - exiftool<br>
 - etc.
 
-**Example**<br>
+**Example**
 Let's check 8th easy challenge (LNK Files) in (incident-response-challenge.com) website and try to solve it.
 
 Used tool here will be LECMD
 
-**LECMD used command**<br>
+**LECMD used command**
 `LECmd.exe -d "C:\Users\%username%\Downloads\Challenges\Easy - LNK - Rumors\Challenge\littlefinger\AppData\Roaming\Microsoft\Windows\Recent" --csv . --csvf littlefingerLNK.csv`
 
 `-d` directs lecmd to parse recent folder of littlefinger user.<br>
