@@ -346,8 +346,9 @@ section {
   font-size:smaller;
   font-weight: bold;
   border-radius: 15px;
-  //margin: 5px 5px;
   padding: 3px 15px;
+  display: inline-block;
+  margin-top: 10px;
   }
 
   a:hover{
@@ -428,4 +429,5 @@ section {
     display: none;
   }
 }
+
 
