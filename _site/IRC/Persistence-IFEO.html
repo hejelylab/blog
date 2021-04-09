@@ -1,0 +1,205 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to find out if there is persistence using Image File Execution Options (IFEO)? | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="How to find out if there is persistence using Image File Execution Options (IFEO)?" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What is Image File Execution Options (IFEO)? IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug." />
+<meta property="og:description" content="What is Image File Execution Options (IFEO)? IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug." />
+<link rel="canonical" href="http://localhost:4000/blog/IRC/Persistence-IFEO" />
+<meta property="og:url" content="http://localhost:4000/blog/IRC/Persistence-IFEO" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-09T17:15:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to find out if there is persistence using Image File Execution Options (IFEO)?" />
+<script type="application/ld+json">
+{"dateModified":"2021-04-09T17:15:00+03:00","datePublished":"2021-04-09T17:15:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/Persistence-IFEO"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/Persistence-IFEO","description":"What is Image File Execution Options (IFEO)? IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.","headline":"How to find out if there is persistence using Image File Execution Options (IFEO)?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=7cc21028308b5268f843b0f709293db0b466621b">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>Welcome to this blog.</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">How to find out if there is persistence using Image File Execution Options (IFEO)?</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-04-09T17:15:00+03:00" itemprop="datePublished">Apr 9, 2021
+      </time>
+    <!--  
+
+2 minutes to read
+ --></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <h3 id="what-is-image-file-execution-options-ifeo">What is Image File Execution Options (IFEO)?</h3>
+<p>IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.<br /></p>
+
+<p><strong>How to set IFEO?</strong></p>
+<ul>
+  <li>Using the registry<br /></li>
+  <li>Using GFlags tool<br /></li>
+</ul>
+
+<h3 id="ifeo-types-with-implementation">IFEO Types with implementation</h3>
+
+<p><strong>First Implementation</strong>
+ Create a debugger to a process in this registry key<br /></p>
+
+<blockquote>
+  <p>HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\&lt;ProcessName&gt;</p>
+</blockquote>
+
+<p>ProcessName is a registry key that has the name of the process we would like to attach a debugger to it.
+The following example tells the debugger for notepad.exe will be calc.exe</p>
+
+<p><strong>Example</strong>
+Initially, IFEO Key looks like this
+Now, we’ll add a key named notepad.exe
+<img src="/blog/assets/images/210409-1.png" alt="first screenshot" /></p>
+
+<p>As below, Debugger is now calc.exe, whenever notepad.exe is set to be executed, the debugger “calc” will be run
+<img src="/blog/assets/images/210409-2.png" alt="second screenshot" /></p>
+
+<p><strong>Second Implementation</strong>
+Launch a process/program when another application silently exits<br /></p>
+<blockquote>
+  <dl>
+    <dt>Silent exit for an application means the application has been terminated in one of two ways</dt>
+    <dd>Self termination by calling ExitProcess</dd>
+    <dd>Another process terminates the monitored process by calling TerminateProcess</dd>
+  </dl>
+</blockquote>
+
+<p>This can be set in the following registry key</p>
+<blockquote>
+  <p>HKLM\Software\Microsoft\Windows NT\CurrentVersion\SilentProcessExit</p>
+</blockquote>
+
+<p><strong>Example</strong>
+We’ll run calc.exe once notepad.exe is silently exiting.<br />
+First, we’ll enable silent process exit monitoring by adding GlobalFlag name with hexadecimal value of 200 in notepad.exe key under IFEO key</p>
+
+<p><img src="/blog/assets/images/210409-3.png" alt="third screenshot" /></p>
+
+<p>We’ll create SilentProcessExit key under CurrentVersion, and under this key we’ll add subkey named notepad.exe</p>
+
+<p>By adding both 
+MonitorProcess value to be calc.exe, and ReportingMode to 1,
+now every silent exit of notepad.exe will trigger calc.exe to be run.</p>
+
+<p><img src="/blog/assets/images/210409-4.png" alt="fourth screenshot" /></p>
+
+<p>An example of how this appears</p>
+
+<p><img src="/blog/assets/images/210409-5.gif" alt="fifth screenshot" /></p>
+
+<p>Example
+Let’s check 7th medium challenge (Universal) in (incident-response-challenge.com) website and try to solve it.</p>
+
+<p>Used tools here will be Registry Explorer to navigate through the registry keys</p>
+
+<hr />
+
+<h3 id="11th-challenge">11th Challenge</h3>
+
+<p>This challenge tells an occasional popup for CMD happens which seems to be a persistence pattern.</p>
+
+<p><img src="/blog/assets/images/210409-6.png" alt="sixth screenshot" /></p>
+
+<p>We’ll check both registry keys that we have mentioned using Registry Explorer as the evidence mentions Global Flags in the provided evidence</p>
+
+<p>System Regsitry hives are in C:\Windows\System32\config, we’ll only parse Software registry hive</p>
+
+<p>In Image File Execution Options, we notice the value name GloabalFlag exists</p>
+
+<p><img src="/blog/assets/images/210409-7.png" alt="seventh screenshot" /></p>
+
+<p>And under SilentProcessExit key, and notepad.exe subkey, we notice the monitoring process is an executable under temp directory which will run whenever a silent exit occurs for notepad.exe</p>
+
+<p><img src="/blog/assets/images/210409-8.png" alt="eighth screenshot" /></p>
+
+<h3 id="answer-to-the-challenge">Answer to the challenge</h3>
+<p>ZmxhZy17Rm91bmRJdH0.exe</p>
+
+<p><strong>References</strong></p>
+<ol>
+  <li>https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags</li>
+  <li>https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit</li>
+  <li>https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/enable-silent-process-exit-monitoring</li>
+  <li>https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit</li>
+</ol>
+
+  </div>
+
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories.html#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Persistence">Persistence</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/IRC/Persistence-IFEO" hidden></a>
+</article>
+
+
+        <hr>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">Linkedin | abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
+
+      </section>
+
+    </div>
+
+    
+  </body>
+</html>

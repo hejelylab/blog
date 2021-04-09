@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-03-03T21:22:13+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">How to find out if there is persistence using Registry run keys or Startup Folders?</title><link href="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys" rel="alternate" type="text/html" title="How to find out if there is persistence using Registry run keys or Startup Folders?" /><published>2021-03-02T18:15:00+03:00</published><updated>2021-03-02T18:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys">&lt;p&gt;Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-04-09T17:40:15+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>Welcome to this blog.</subtitle><author><name>HejelyLab</name></author><entry><title type="html">How to find out if there is persistence using Image File Execution Options (IFEO)?</title><link href="http://localhost:4000/blog/IRC/Persistence-IFEO" rel="alternate" type="text/html" title="How to find out if there is persistence using Image File Execution Options (IFEO)?" /><published>2021-04-09T17:15:00+03:00</published><updated>2021-04-09T17:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-IFEO</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-IFEO">&lt;h3 id=&quot;what-is-image-file-execution-options-ifeo&quot;&gt;What is Image File Execution Options (IFEO)?&lt;/h3&gt;
+&lt;p&gt;IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to set IFEO?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Using the registry&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Using GFlags tool&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ifeo-types-with-implementation&quot;&gt;IFEO Types with implementation&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;First Implementation&lt;/strong&gt;
+ Create a debugger to a process in this registry key&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\&amp;lt;ProcessName&amp;gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ProcessName is a registry key that has the name of the process we would like to attach a debugger to it.
+The following example tells the debugger for notepad.exe will be calc.exe&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
+Initially, IFEO Key looks like this
+Now, we’ll add a key named notepad.exe
+&lt;img src=&quot;/blog/assets/images/210409-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As below, Debugger is now calc.exe, whenever notepad.exe is set to be executed, the debugger “calc” will be run
+&lt;img src=&quot;/blog/assets/images/210409-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Second Implementation&lt;/strong&gt;
+Launch a process/program when another application silently exits&lt;br /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;Silent exit for an application means the application has been terminated in one of two ways&lt;/dt&gt;
+    &lt;dd&gt;Self termination by calling ExitProcess&lt;/dd&gt;
+    &lt;dd&gt;Another process terminates the monitored process by calling TerminateProcess&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This can be set in the following registry key&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;HKLM\Software\Microsoft\Windows NT\CurrentVersion\SilentProcessExit&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
+We’ll run calc.exe once notepad.exe is silently exiting.&lt;br /&gt;
+First, we’ll enable silent process exit monitoring by adding GlobalFlag name with hexadecimal value of 200 in notepad.exe key under IFEO key&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210409-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ll create SilentProcessExit key under CurrentVersion, and under this key we’ll add subkey named notepad.exe&lt;/p&gt;
+
+&lt;p&gt;By adding both 
+MonitorProcess value to be calc.exe, and ReportingMode to 1,
+now every silent exit of notepad.exe will trigger calc.exe to be run.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210409-4.png&quot; alt=&quot;fourth screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;An example of how this appears&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210409-5.gif&quot; alt=&quot;fifth screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Example
+Let’s check 7th medium challenge (Universal) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;p&gt;Used tools here will be Registry Explorer to navigate through the registry keys&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;11th-challenge&quot;&gt;11th Challenge&lt;/h3&gt;
+
+&lt;p&gt;This challenge tells an occasional popup for CMD happens which seems to be a persistence pattern.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210409-6.png&quot; alt=&quot;sixth screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ll check both registry keys that we have mentioned using Registry Explorer as the evidence mentions Global Flags in the provided evidence&lt;/p&gt;
+
+&lt;p&gt;System Regsitry hives are in C:\Windows\System32\config, we’ll only parse Software registry hive&lt;/p&gt;
+
+&lt;p&gt;In Image File Execution Options, we notice the value name GloabalFlag exists&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210409-7.png&quot; alt=&quot;seventh screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And under SilentProcessExit key, and notepad.exe subkey, we notice the monitoring process is an executable under temp directory which will run whenever a silent exit occurs for notepad.exe&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210409-8.png&quot; alt=&quot;eighth screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
+&lt;p&gt;ZmxhZy17Rm91bmRJdH0.exe&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags&lt;/li&gt;
+  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit&lt;/li&gt;
+  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/enable-silent-process-exit-monitoring&lt;/li&gt;
+  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Persistence" /><summary type="html">What is Image File Execution Options (IFEO)? IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.</summary></entry><entry><title type="html">How to find out if there is persistence using Registry run keys or Startup Folders?</title><link href="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys" rel="alternate" type="text/html" title="How to find out if there is persistence using Registry run keys or Startup Folders?" /><published>2021-03-02T18:15:00+03:00</published><updated>2021-03-02T18:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys">&lt;p&gt;Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.&lt;/p&gt;
 
 &lt;hr /&gt;
 
