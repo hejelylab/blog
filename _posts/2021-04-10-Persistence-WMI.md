@@ -6,7 +6,7 @@ permalink: /IRC/Persistence-WMI
 categories: [IRC, Digital Forensics, Persistence]
 ---
 
-If you would like to know about WMI, this post explains [WMI in Details](https://hejely.github.io/blog/DigitalForensics/WMI)
+If you would like to know about WMI, this post explains [WMI in Details](https://hejelylab.github.io/blog/DigitalForensics/WMI)
 
 ### 14th Challenge
 
