@@ -1,0 +1,189 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to identify process hollowing in a memory image? | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="How to identify process hollowing in a memory image?" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What is Process Hollowing? Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code." />
+<meta property="og:description" content="What is Process Hollowing? Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code." />
+<link rel="canonical" href="http://localhost:4000/blog/IRC/Memory-ProcessHollowing" />
+<meta property="og:url" content="http://localhost:4000/blog/IRC/Memory-ProcessHollowing" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-20T00:00:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to identify process hollowing in a memory image?" />
+<script type="application/ld+json">
+{"dateModified":"2021-03-20T00:00:00+03:00","datePublished":"2021-03-20T00:00:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/Memory-ProcessHollowing"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/Memory-ProcessHollowing","description":"What is Process Hollowing? Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code.","headline":"How to identify process hollowing in a memory image?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=a0b945b3e832cff409ae386af50f34a7b9b93ef2">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>Digital Forensics | Incident Response | Threat Hunting</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">How to identify process hollowing in a memory image?</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-03-20T00:00:00+03:00" itemprop="datePublished">Mar 20, 2021
+      </time>
+    <!--  
+
+3 minutes to read
+ --></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <h3 id="what-is-process-hollowing">What is Process Hollowing?</h3>
+<p>Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code.</p>
+
+<p><strong>How does Process Hollowing process gets accomplished?</strong></p>
+<ol>
+  <li>Malicious process creates a legitimate process in a suspended state using CreateProcess() function.</li>
+  <li>The legitimate process memory gets hollowed out to have the malicious code replaces the original code. This is performed by calling NtUnmapViewOfSection or ZwUnmapViewofSection functions.</li>
+  <li>Allocated a new memory in the original process using VirtualAllocEx()</li>
+  <li>The allocated memory gets written into with the malicious code using WriteProcessMemory()</li>
+  <li>Process ends the suspended state by invoking ResumeThread()</li>
+</ol>
+
+<hr />
+
+<h3 id="12th-challenge">12th Challenge</h3>
+
+<p>Let’s check 6th advanced challenge (Frog Find) in (incident-response-challenge.com) website and try to solve it.
+<img src="/blog/assets/images/210320-1.png" alt="first screenshot" /></p>
+
+<p>The challenge stresses that there is “frog” hidden in a process.</p>
+
+<p>First thing we will do is to find memory image profile using volatility imageinfo plugin.<br />
+<code class="language-plaintext highlighter-rouge">vol.py -f THEEYRIE.dmp imageinfo</code></p>
+
+<p><img src="/blog/assets/images/210320-2.png" alt="second screenshot" /></p>
+
+<p><strong>How to identify process hollowing from a memory image?</strong></p>
+<ul>
+  <li>When an application gets executed, memory regions/pages are assigned to this executable in memory so process content has defined regions in the memory to get executed.</li>
+  <li>Every process has what is called Executive Process Structure (_EPROCESS). This EPROCESS contains fields which provide information about the process and points to other structures such as Virtual Address Descriptor (VAD).</li>
+  <li>One of the EPROCESS fields is something called ActiveProcessLinks which is part of a complete doubly linked list structures that circulates all the existing processes in memory.</li>
+  <li>When we run imageinfo or kdbgscan plugins, we identify what’s called PsActiveProcessHead.</li>
+  <li>PsActiveProcessHead points to the doubly linked list ActiveProcessLink of the process “System”. Now, traversing other processes is achievable as this is doubly linked list (In doubly linked list there are two links to the next and to the previous nodes in every node)</li>
+</ul>
+
+<p><img src="/blog/assets/images/210320-3.png" alt="third screenshot" /></p>
+
+<ul>
+  <li>Remember, VAD structure is one of the structures that EPROCESS points to.</li>
+</ul>
+
+<p><strong>What is VAD?</strong></p>
+<ul>
+  <li>VAD trackes the memory pages that are allocated to a process.</li>
+  <li>Volatility malfind plugin searches for VAD entries that represent memory pages which are dynamically allocated during runtime using API calls such as VirtualAllocEx as what occurs in process hollowing.</li>
+  <li>Not only that, it looks if these memory pages contain PAGE_EXECUTE_READWRITE permission and looks if instructions inside it represent PE header (Windows executable header)<br /></li>
+</ul>
+
+<p>Execute malfind against the memory using one of the suggested profiles from imageinfo
+<code class="language-plaintext highlighter-rouge">vol.py -f THEEYRIE.dmp --profile=Win10x64_17134 malfind</code></p>
+
+<p><img src="/blog/assets/images/210320-4.png" alt="fourth screenshot" /></p>
+
+<p>The only candidate which contains an executable (MZ header) is this process chrome.exe with process ID 1996</p>
+
+<p><img src="/blog/assets/images/210320-5.png" alt="fifth screenshot" /></p>
+
+<p><strong>Dump chrome.exe process memory (memdump)</strong>
+We can identify if there is malicious content by dumping the whole process memory pages that are assigned to this suspicious process using memdump plugin<br />
+<code class="language-plaintext highlighter-rouge">vol.py -f THEEYRIE.dmp --profile=Win10x64_17134 memdump -p1996 -D chromeDump/</code></p>
+
+<p><img src="/blog/assets/images/210320-6.png" alt="sixth screenshot" /></p>
+
+<h3 id="answer-to-the-challenge">Answer to the challenge</h3>
+<p>Frog-FWGA142FS</p>
+
+<hr />
+
+<h3 id="alternative-approach">Alternative Approach</h3>
+
+<p><strong>Dump chrome.exe process executable (procdump)</strong>
+Alternative option is to dump the malicious process executable image as well and perform the same check<br />
+<code class="language-plaintext highlighter-rouge">vol.py -f THEEYRIE.dmp --profile=Win10x64_17134 procdump -p 1996 --dump-dir 1996PID_Executable/</code></p>
+
+<p><img src="/blog/assets/images/210320-7.png" alt="seventh screenshot" /></p>
+
+<p><strong>References</strong></p>
+<ol>
+  <li>https://imphash.medium.com/windows-process-internals-a-few-concepts-to-know-before-jumping-on-memory-forensics-823d72d4d7b8</li>
+</ol>
+
+
+  </div>
+
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories.html#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Memory Investigation">Memory Investigation</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/IRC/Memory-ProcessHollowing" hidden></a>
+</article>
+
+
+        <hr>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">Linkedin | abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
+
+      </section>
+
+    </div>
+
+    
+  </body>
+</html>

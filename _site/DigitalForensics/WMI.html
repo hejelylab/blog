@@ -1,0 +1,466 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Windows Management Instrumentation (WMI) | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Windows Management Instrumentation (WMI)" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="What is Windows Management Instrumentation (WMI)?" />
+<meta property="og:description" content="What is Windows Management Instrumentation (WMI)?" />
+<link rel="canonical" href="http://localhost:4000/blog/DigitalForensics/WMI" />
+<meta property="og:url" content="http://localhost:4000/blog/DigitalForensics/WMI" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-10T17:15:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Windows Management Instrumentation (WMI)" />
+<script type="application/ld+json">
+{"dateModified":"2021-04-10T17:15:00+03:00","datePublished":"2021-04-10T17:15:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/DigitalForensics/WMI"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/DigitalForensics/WMI","description":"What is Windows Management Instrumentation (WMI)?","headline":"Windows Management Instrumentation (WMI)","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=a0b945b3e832cff409ae386af50f34a7b9b93ef2">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>Digital Forensics | Incident Response | Threat Hunting</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">Windows Management Instrumentation (WMI)</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-04-10T17:15:00+03:00" itemprop="datePublished">Apr 10, 2021
+      </time>
+    <!--  
+
+9 minutes to read
+ --></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <h3 id="what-is-windows-management-instrumentation-wmi">What is Windows Management Instrumentation (WMI)?</h3>
+
+<p><strong>TL;DR</strong></p>
+<blockquote>
+  <p>WMI is a feature which allows querying, collecting, and managing Windows OS components eihter locally or remotely<br /></p>
+</blockquote>
+
+<p><strong>A bit Longer Definition</strong></p>
+<blockquote>
+  <p>WMI is a Microsoft implementation of Web-Based Enterprise Management (WBEM) in Windows OS<br /><br />
+What is WBEM?</p>
+  <ul>
+    <li>It is an open standard called the Web-Based Enterprise Management (WBEM) which aims to exchange Comon Information Model (CIM) data between systems<br /><br />
+What is CIM?</li>
+    <li>It is a data model standard which allows hardware, Operating Systems or applications for example to define classes that represent the different components they have. An example would be a class that represents information about hardisk<br /></li>
+  </ul>
+</blockquote>
+
+<p><br />
+<strong>Example</strong>
+I would like to know the details about services on my system, and in specific DHCP service. I would write the following powershell command<br />
+<code class="language-plaintext highlighter-rouge">Get-CimInstance -Namespace root/CIMV2 -ClassName CIM_Service | Where-Object {$_.Name -eq "dhcp"}</code><br />
+With WMI, we are able to have powerful tasks gets accomplished such as creating processes remotely.</p>
+
+<p><strong>How is WMI organized?</strong>
+It is organized into Namespaces &gt; Classes &gt; Instances <br />
+Essentially, namespace may contain different classes, and classes can have one or more instances.
+This is clear in the previous example, another example where there is one instance for this class<br />
+<code class="language-plaintext highlighter-rouge">Get-CimInstance -Namespace root/CIMV2 -ClassName Win32_OperatingSystem</code><br />
+output is the OS instance information<br />
+<br /></p>
+
+<p><strong>How does WMI provide us info about the operating system?</strong>
+This could be understood by looking at WMI architecture</p>
+
+<h3 id="wmi-architecture">WMI Architecture</h3>
+<p>WMI consists of 3 components:<br /></p>
+<ul>
+  <li>WMI Providers &amp; Managed Objects<br />
+      So for any component to have its information available via WMI. It needs to have a provider which handles requests and queries about this object
+    <ul>
+      <li>Providers consist of two components which are<br />
+        <ul>
+          <li>DLL File</li>
+          <li>Managed Object Format (MOF)
+            <ul>
+              <li>CIM scripts which describe classes that are available in WMI repository.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>WMI Infrastructure<br />
+    <ul>
+      <li>WMI core (WMI service) and WMI repository (C:\Windows\System32\wbem\repository)</li>
+    </ul>
+  </li>
+  <li>WMI Consumers<br />
+  These are basically what can query WMI repository such as
+    <ul>
+      <li>Powershell</li>
+      <li>WMIC (WMI command-line utility)</li>
+      <li>Programming languages such as C#, C++, VB, etc.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+<h3 id="how-to-access-wmi-repository">How to access WMI repository?</h3>
+<p>Using one of two protocols which are<br /></p>
+<ul>
+  <li>Distributed Component Object Model (DCOM)
+    <ul>
+      <li>First, What is COM?
+        <blockquote>
+          <p>COM is a standard which specifies how objects or components can interact with other components whether they are in the same process or in different processes on the same computer<br /></p>
+        </blockquote>
+      </li>
+      <li>What is DCOM?
+        <blockquote>
+          <p>DCOM is the idea of having components or objects interact with other components even if they are in different systems<br />
+  For a component to request a service from another component in another system, this request can be forwarded to Remote Procedure Call (RPC) protocol which acts as the transmission protocol<br /></p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li>WinRM
+    <ul>
+      <li>WinRM is Microsoft implementation of protocol called WSMAN.
+        <ul>
+          <li>What is WSMAN?<br />
+            <blockquote>
+              <p>It is a messaging protocol for exchanging information between a server and a client. It often relies on HTTP.</p>
+            </blockquote>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="wmi-attacks">WMI Attacks</h3>
+<p>WMI can be leveraged by attackers in several post exploitation phases</p>
+<ul>
+  <li>Reconnaissance</li>
+  <li>Privilege Escalation</li>
+  <li>Lateral Movement</li>
+  <li>Persistence</li>
+</ul>
+
+<blockquote>
+  <p>I will explain with examples how WMI is used in only the latter two phases: Lateral movement &amp; Persistence<br />
+In addition, I’ll explain approaches to detect them</p>
+</blockquote>
+
+<hr />
+
+<h3 id="wmi-lateral-movement">WMI Lateral Movement</h3>
+<p>Two examples to perform lateral movement using WMI are</p>
+<ul>
+  <li>wmi process call create</li>
+  <li>wmiexec.py<br /></li>
+</ul>
+
+<blockquote>
+  <p>This is a fileless lateral movement, no need for the existence of any file on the target system, WMI will achieve the task<br />
+Communication will appear over port TCP 135 in the beginning, and then later a random port will be used after negotiation succeeds between the two systems<br />
+<br /></p>
+</blockquote>
+
+<p><strong>WMI Lateral Movement Detection Example</strong></p>
+
+<p>Scenario<br /></p>
+<ul>
+  <li>In this example we will run “CMD /c ipconfig.exe” on remote system using WMIC command line utility, and confirm the observed events in both source and target systems.</li>
+  <li>
+    <p>Used WMIC command<br />
+ <code class="language-plaintext highlighter-rouge">wmic.exe /NODE:172.16.1.12 /USER:"hejelylab\Administrator" /PASSWORD:"UserPassword" process call create "cmd.exe /c ipconfig.exe"</code><br /></p>
+  </li>
+  <li>Eventlogs
+    <ul>
+      <li>Security Event logs<br />
+      You need to have Command Line Auditing Enabled.
+      No logs appeared to me in this example if command line logging is not enabled and sysmon is installed.
+        <ul>
+          <li>Source
+            <ul>
+              <li>Security logs, event ID: 4688
+                <ul>
+                  <li>Process name: WMIC.exe</li>
+                  <li>Parent process name: cmd.exe</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Target
+            <ul>
+              <li>Security logs, event ID: 4688
+                <ul>
+                  <li>Process name: calc.exe</li>
+                  <li>Parent process name: WmiPrvSE.exe</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Sysmon Event logs
+        <ul>
+          <li>Source
+            <ul>
+              <li>Sysmon logs, event ID: 1
+                <ul>
+                  <li>Process name: WMIC.exe</li>
+                  <li>Parent process name: cmd.exe</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Target
+            <ul>
+              <li>Sysmon logs, event ID: 1
+                <ul>
+                  <li>Process name: calc.exe</li>
+                  <li>Parent process name: WmiPrvSE.exe</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/blog/assets/images/210410-1_WMI.png" alt="first screenshot" /></p>
+
+<hr />
+
+<h3 id="wmi-persistence">WMI Persistence</h3>
+<p>WMI persistence can be achieved via WMI event subscription for example<br />
+Steps: <br /></p>
+<ul>
+  <li>An MOF file gets created<br /></li>
+  <li>MOF file contains the following:<br />
+    <ul>
+      <li>Event Trigger (Class __EventFilter)
+        <ul>
+          <li>An example, event trigger is a specific date, an event that occurs on thestem (notepad.exe starts)</li>
+        </ul>
+      </li>
+      <li>Event Consumer (Class __EventConsumer)
+        <ul>
+          <li>What will happen once the trigger occurs, for example, run a specific script command.</li>
+        </ul>
+      </li>
+      <li>Binding (class __FilterToConsumerBinding)
+        <ul>
+          <li>This  what binds the consumer to the trigger.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Compile MOF file
+    <ul>
+      <li>Using mofcomp.exe</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Persistence is achieved!!!</p>
+
+<hr />
+
+<p><strong>WMI Persistence Detection Examples</strong></p>
+
+<p><strong>First Example</strong>
+Scenario<br /></p>
+<ul>
+  <li>A MOF file is dropped to system</li>
+  <li>The MOF file gets compiled using mofcomp.exe (mofcomp is spawned by powershell) <br />
+WMI event consumer event is executed (The example here is to run BATCH script which will execute cmd)<br /></li>
+</ul>
+
+<p>Detection</p>
+<ul>
+  <li>Sysmon
+    <ul>
+      <li>Event ID 1: powershell &gt; mofcomp.exe .\a.mof</li>
+      <li>Event ID 20: WmiConsumerEvent</li>
+      <li>Event ID 21: WmiBindingEvent</li>
+    </ul>
+  </li>
+  <li>WMI-Activity Operational Log
+    <ul>
+      <li>Event ID 5861: records permanent event consumer creation<br />
+<img src="/blog/assets/images/210410-2_WMI.png" alt="second screenshot" /></li>
+    </ul>
+  </li>
+  <li>Security
+    <ul>
+      <li>Event ID 4688: powershell &gt; mofcomp.exe .\a.mof</li>
+    </ul>
+  </li>
+</ul>
+
+<p>All events in one table
+<img src="/blog/assets/images/210410-3_WMI.png" alt="third screenshot" /></p>
+
+<p>Note (Different example): Sysmon also triggers for WMI event filter in Event ID: 19.
+<img src="/blog/assets/images/210410-4_WMI.png" alt="fourth screenshot" /></p>
+
+<p><strong>Second Example,WMI detection using WMI</strong>
+I will compile the following MOF file in advance to view valid results of WMI detection using WMI<br />
+Executed command: mofcomp.exe .\LogonTime.mof<br />
+LogonTime.mof<br /></p>
+<ul>
+  <li>
+    <p>Purpose: After being compile, for any interactive logon “LogonType=2”, CMD will be run and echo date and time into “C:\Users\administrator\Downloads\LogonTime.txt”</p>
+  </li>
+  <li>
+    <p>LogonTime.mof Content<br /></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>#pragma namespace (“\\.\root\subscription”)<br />
+instance of __EventFilter as $FILTER<br />
+{<br />
+    Name = “VBScript Filter”;<br />
+    EventNamespace = “root\cimv2”;<br />
+ Query = “SELECT * FROM __InstanceCreationEvent WITHIN 5 WHERE (TargetInstance ISA ‘Win32_LogonSession’ AND (TargetInstance.LogonType = 2))”;<br />
+    QueryLanguage = “WQL”;<br />
+};<br />
+instance of ActiveScriptEventConsumer as $CONSUMER<br />
+{<br />
+    Name = “VBScript CMD Consumer”;<br />
+    ScriptingEngine = “VBScript”;<br />
+    ScriptText =
+      “Set objShell = CreateObject("WScript.Shell")\n”
+   “objShell.Run "C:\Windows\system32\cmd.exe /C echo %date%%time% &gt; C:\Users\administrator\Downloads\LogonTime.txt"\n”;<br />
+};<br />
+instance of __FilterToConsumerBinding<br />
+{<br />
+    Consumer = $CONSUMER ;<br />
+    Filter = $FILTER ;<br />
+};<br /></p>
+</blockquote>
+
+<p>Once logging out and logging again interactively, ipconfig will be executed.</p>
+<blockquote>
+  <p>Remember that MOF contains</p>
+  <ul>
+    <li>trigger filter (__EventFilter),</li>
+    <li>consumer (__EventConsumer), and</li>
+    <li>Binding (__FilterToConsumerBinding)<br /></li>
+  </ul>
+</blockquote>
+
+<p><br />
+We can fetch this infomation using the following powershell cmdlets<br />
+<code class="language-plaintext highlighter-rouge">Get-CimInstance -Namespace root/subscription -ClassName __EventFilter</code></p>
+
+<p><img src="/blog/assets/images/210410-5_WMI.png" alt="fifth screenshot" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Get-CimInstance -Namespace root/subscription -ClassName __EventConsumer</code></p>
+
+<p><img src="/blog/assets/images/210410-6_WMI.png" alt="sixth screenshot" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Get-CimInstance -Namespace root/subscription -ClassName __FilterToConsumerBinding</code></p>
+
+<p><img src="/blog/assets/images/210410-7_WMI.png" alt="seventh screenshot" /></p>
+
+<p><strong>Third Example</strong></p>
+<ul>
+  <li>WMI Repository file
+    <ul>
+      <li>File Name: OBJECTS.DAT</li>
+      <li>Location: C:\Windows\System32\wbem\Repository</li>
+      <li>Purpose: this file contains WMI executed commands on system. We can pull it andexamine it<br />
+  I wrote an example of how to do this in this post <a href="https://hejely.github.io/blog/IRC/Persistence-WMI">WMI Persistence Example</a><br /></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>References</strong></p>
+<ol>
+  <li>https://www.varonis.com/blog/wmi-windows-management-instrumentation/</li>
+  <li>https://www.fireeye.de/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf</li>
+  <li>https://www.youtube.com/watch?v=aBQ1vEjK6v4</li>
+  <li>https://pentestlab.blog/2020/01/21/persistence-wmi-event-subscription/</li>
+  <li>https://www.hackingarticles.in/lateral-movement-wmi/</li>
+  <li>https://medium.com/threatpunter/detecting-removing-wmi-persistence-60ccbb7dff96</li>
+</ol>
+
+
+  </div>
+
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories.html#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Lateral Movement">Lateral Movement</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Persistence">Persistence</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/DigitalForensics/WMI" hidden></a>
+</article>
+
+
+        <hr>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">Linkedin | abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
+
+      </section>
+
+    </div>
+
+    
+  </body>
+</html>

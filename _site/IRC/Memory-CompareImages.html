@@ -1,0 +1,150 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to identify malicious processes by comparing an infected memory image with a clean baseline one? | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="How to identify malicious processes by comparing an infected memory image with a clean baseline one?" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="13th Challenge" />
+<meta property="og:description" content="13th Challenge" />
+<link rel="canonical" href="http://localhost:4000/blog/IRC/Memory-CompareImages" />
+<meta property="og:url" content="http://localhost:4000/blog/IRC/Memory-CompareImages" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-28T00:00:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to identify malicious processes by comparing an infected memory image with a clean baseline one?" />
+<script type="application/ld+json">
+{"dateModified":"2021-03-28T00:00:00+03:00","datePublished":"2021-03-28T00:00:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRC/Memory-CompareImages"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/IRC/Memory-CompareImages","description":"13th Challenge","headline":"How to identify malicious processes by comparing an infected memory image with a clean baseline one?","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=a0b945b3e832cff409ae386af50f34a7b9b93ef2">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>Digital Forensics | Incident Response | Threat Hunting</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">How to identify malicious processes by comparing an infected memory image with a clean baseline one?</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-03-28T00:00:00+03:00" itemprop="datePublished">Mar 28, 2021
+      </time>
+    <!--  
+
+1 minutes to read
+ --></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <h3 id="13th-challenge">13th Challenge</h3>
+
+<p>This challenge tells there is a malicious process in a memory image and asked if we can identify this by comparing the memory image against another clean memory image.</p>
+
+<p><img src="/blog/assets/images/210328-1.png" alt="first screenshot" /></p>
+
+<p>First thing we will do is confirming the memory image profile using imageinfo against one of the two images<br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">vol.py -f DESKTOP-HUB666E-20191101-155228.dmp imageinfo</code></p>
+
+<p><img src="/blog/assets/images/210328-2.png" alt="second screenshot" /></p>
+
+<ul>
+  <li>
+    <p>Now, since the challenge asks about suspicious process, we’ll use processbl plugin which compares the processes of an images to processes of a baseline image</p>
+  </li>
+  <li>
+    <p>Two options to be used in comparison, display</p>
+    <ul>
+      <li>Ony unknown by using -U option</li>
+      <li>Only known by using -K option<br />
+<code class="language-plaintext highlighter-rouge">DESKTOP-HUB666E-20200209-162404.dmp --profile=Win10x64_15063 processbl -B ../BaseLine/DESKTOP-HUB666E-20191101-155228.dmp -U 2&gt;/dev/null</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/blog/assets/images/210328-3.png" alt="third screenshot" /></p>
+
+<p>The suspicious process appears to be whatsapp with PID:5392, this is due to spwaning CMD process (3352)</p>
+
+<h3 id="answer-to-the-challenge">Answer to the Challenge:</h3>
+<p>whatsapp.exe</p>
+
+<hr />
+
+<h3 id="side-note">Side note</h3>
+<p>With same approach with comparing processes between images, we can compare drivers and services using plugins<br /></p>
+<ul>
+  <li>servicebl</li>
+  <li>driverbl</li>
+</ul>
+
+
+  </div>
+
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories.html#IRC">IRC</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Digital Forensics">Digital Forensics</a>
+      &nbsp;
+      
+      <a href="/blog/categories.html#Memory Investigation">Memory Investigation</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/IRC/Memory-CompareImages" hidden></a>
+</article>
+
+
+        <hr>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">Linkedin | abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2021</p>
+        </div>
+        
+        
+        
+
+      </section>
+
+    </div>
+
+    
+  </body>
+</html>
