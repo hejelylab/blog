@@ -60,4 +60,5 @@ We can see an executable runs everytime this user logs in, which is under public
 Frag-AGREWEHDFG.exe
 
 **References**
-1. https://attack.mitre.org/techniques/T1547/001/
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
+2. https://attack.mitre.org/techniques/T1547/001/

@@ -72,3 +72,7 @@ Since the provided evidence contains user's profile files, we'll view both regis
 
 ### Answer to the challenge
 12:41:26
+
+
+**References**
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)

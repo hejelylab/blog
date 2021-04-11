@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-04-10T18:30:22+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>DFIR | Threat Hunting</subtitle><author><name>HejelyLab</name></author><entry><title type="html">How to find out if there is persistence using WMI?</title><link href="http://localhost:4000/blog/IRC/Persistence-WMI" rel="alternate" type="text/html" title="How to find out if there is persistence using WMI?" /><published>2021-04-10T17:16:00+03:00</published><updated>2021-04-10T17:16:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-WMI</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-WMI">&lt;p&gt;If you would like to know about WMI, this post explains &lt;a href=&quot;https://hejelylab.github.io/blog/DigitalForensics/WMI&quot;&gt;WMI in Details&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2021-04-12T02:34:47+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>DFIR | Threat Hunting</subtitle><author><name>HejelyLab</name></author><entry><title type="html">How to find out if there is persistence using WMI?</title><link href="http://localhost:4000/blog/IRC/Persistence-WMI" rel="alternate" type="text/html" title="How to find out if there is persistence using WMI?" /><published>2021-04-10T17:16:00+03:00</published><updated>2021-04-10T17:16:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-WMI</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-WMI">&lt;p&gt;If you would like to know about WMI, this post explains &lt;a href=&quot;https://hejelylab.github.io/blog/DigitalForensics/WMI&quot;&gt;WMI in Details&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Let’s check 3rd medium challenge (WhoaMI) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
 
 &lt;h3 id=&quot;14th-challenge&quot;&gt;14th Challenge&lt;/h3&gt;
 
@@ -12,7 +16,12 @@ You can find the tool here: &lt;a href=&quot;https://github.com/davidpany/WMI_Fo
 &lt;p&gt;&lt;img src=&quot;/blog/assets/images/210410-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;C:\temp\addadmin.ps1&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Persistence" /><summary type="html">If you would like to know about WMI, this post explains WMI in Details</summary></entry><entry><title type="html">Windows Management Instrumentation (WMI)</title><link href="http://localhost:4000/blog/DigitalForensics/WMI" rel="alternate" type="text/html" title="Windows Management Instrumentation (WMI)" /><published>2021-04-10T17:15:00+03:00</published><updated>2021-04-10T17:15:00+03:00</updated><id>http://localhost:4000/blog/DigitalForensics/WMI</id><content type="html" xml:base="http://localhost:4000/blog/DigitalForensics/WMI">&lt;h3 id=&quot;what-is-windows-management-instrumentation-wmi&quot;&gt;What is Windows Management Instrumentation (WMI)?&lt;/h3&gt;
+&lt;p&gt;C:\temp\addadmin.ps1&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Persistence" /><summary type="html">If you would like to know about WMI, this post explains WMI in Details</summary></entry><entry><title type="html">Windows Management Instrumentation (WMI)</title><link href="http://localhost:4000/blog/DigitalForensics/WMI" rel="alternate" type="text/html" title="Windows Management Instrumentation (WMI)" /><published>2021-04-10T17:15:00+03:00</published><updated>2021-04-10T17:15:00+03:00</updated><id>http://localhost:4000/blog/DigitalForensics/WMI</id><content type="html" xml:base="http://localhost:4000/blog/DigitalForensics/WMI">&lt;h3 id=&quot;what-is-windows-management-instrumentation-wmi&quot;&gt;What is Windows Management Instrumentation (WMI)?&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -158,14 +167,14 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
     &lt;ul&gt;
       &lt;li&gt;Security Event logs&lt;br /&gt;
       You need to have Command Line Auditing Enabled.
-      No logs appeared to me in this example if command line logging is not enabled and sysmon is installed.
+      No logs appeared to me in this example if command line logging is not enabled and sysmon is not installed.
         &lt;ul&gt;
           &lt;li&gt;Source
             &lt;ul&gt;
               &lt;li&gt;Security logs, event ID: 4688
                 &lt;ul&gt;
                   &lt;li&gt;Process name: WMIC.exe&lt;/li&gt;
-                  &lt;li&gt;Parent process name: cmd.exe&lt;/li&gt;
+                  &lt;li&gt;Parent process name: powershell.exe&lt;/li&gt;
                 &lt;/ul&gt;
               &lt;/li&gt;
             &lt;/ul&gt;
@@ -174,8 +183,14 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
             &lt;ul&gt;
               &lt;li&gt;Security logs, event ID: 4688
                 &lt;ul&gt;
-                  &lt;li&gt;Process name: calc.exe&lt;/li&gt;
+                  &lt;li&gt;Process name: cmd.exe&lt;/li&gt;
                   &lt;li&gt;Parent process name: WmiPrvSE.exe&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;Security logs, event ID: 4688
+                &lt;ul&gt;
+                  &lt;li&gt;Process name: ipconfig.exe&lt;/li&gt;
+                  &lt;li&gt;Parent process name: cmd.exe&lt;/li&gt;
                 &lt;/ul&gt;
               &lt;/li&gt;
             &lt;/ul&gt;
@@ -189,7 +204,7 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
               &lt;li&gt;Sysmon logs, event ID: 1
                 &lt;ul&gt;
                   &lt;li&gt;Process name: WMIC.exe&lt;/li&gt;
-                  &lt;li&gt;Parent process name: cmd.exe&lt;/li&gt;
+                  &lt;li&gt;Parent process name: powershell.exe&lt;/li&gt;
                 &lt;/ul&gt;
               &lt;/li&gt;
             &lt;/ul&gt;
@@ -198,8 +213,14 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
             &lt;ul&gt;
               &lt;li&gt;Sysmon logs, event ID: 1
                 &lt;ul&gt;
-                  &lt;li&gt;Process name: calc.exe&lt;/li&gt;
+                  &lt;li&gt;Process name: cmd.exe&lt;/li&gt;
                   &lt;li&gt;Parent process name: WmiPrvSE.exe&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;Sysmon logs, event ID: 1
+                &lt;ul&gt;
+                  &lt;li&gt;Process name: ipconfig.exe&lt;/li&gt;
+                  &lt;li&gt;Parent process name: cmd.exe&lt;/li&gt;
                 &lt;/ul&gt;
               &lt;/li&gt;
             &lt;/ul&gt;
@@ -223,7 +244,7 @@ Steps: &lt;br /&gt;&lt;/p&gt;
     &lt;ul&gt;
       &lt;li&gt;Event Trigger (Class __EventFilter)
         &lt;ul&gt;
-          &lt;li&gt;An example, event trigger is a specific date, an event that occurs on thestem (notepad.exe starts)&lt;/li&gt;
+          &lt;li&gt;An example, event trigger is a specific date, an event that occurs on the system (notepad.exe starts)&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
       &lt;li&gt;Event Consumer (Class __EventConsumer)
@@ -368,7 +389,9 @@ We can fetch this infomation using the following powershell cmdlets&lt;br /&gt;
   &lt;li&gt;https://pentestlab.blog/2020/01/21/persistence-wmi-event-subscription/&lt;/li&gt;
   &lt;li&gt;https://www.hackingarticles.in/lateral-movement-wmi/&lt;/li&gt;
   &lt;li&gt;https://medium.com/threatpunter/detecting-removing-wmi-persistence-60ccbb7dff96&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="Digital Forensics" /><category term="Lateral Movement" /><category term="Persistence" /><summary type="html">What is Windows Management Instrumentation (WMI)?</summary></entry><entry><title type="html">How to identify malicious processes by comparing an infected memory image with a clean baseline one?</title><link href="http://localhost:4000/blog/IRC/Memory-CompareImages" rel="alternate" type="text/html" title="How to identify malicious processes by comparing an infected memory image with a clean baseline one?" /><published>2021-03-28T00:00:00+03:00</published><updated>2021-03-28T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Memory-CompareImages</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Memory-CompareImages">&lt;h3 id=&quot;13th-challenge&quot;&gt;13th Challenge&lt;/h3&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="Digital Forensics" /><category term="Lateral Movement" /><category term="Persistence" /><summary type="html">What is Windows Management Instrumentation (WMI)?</summary></entry><entry><title type="html">How to identify malicious processes by comparing an infected memory image with a clean baseline one?</title><link href="http://localhost:4000/blog/IRC/Memory-CompareImages" rel="alternate" type="text/html" title="How to identify malicious processes by comparing an infected memory image with a clean baseline one?" /><published>2021-03-28T00:00:00+03:00</published><updated>2021-03-28T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Memory-CompareImages</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Memory-CompareImages">&lt;p&gt;Let’s check 1st advanced challenge (2nd Base) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
+
+&lt;h3 id=&quot;13th-challenge&quot;&gt;13th Challenge&lt;/h3&gt;
 
 &lt;p&gt;This challenge tells there is a malicious process in a memory image and asked if we can identify this by comparing the memory image against another clean memory image.&lt;/p&gt;
 
@@ -408,7 +431,12 @@ We can fetch this infomation using the following powershell cmdlets&lt;br /&gt;
 &lt;ul&gt;
   &lt;li&gt;servicebl&lt;/li&gt;
   &lt;li&gt;driverbl&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Memory Investigation" /><summary type="html">13th Challenge</summary></entry><entry><title type="html">How to identify process hollowing in a memory image?</title><link href="http://localhost:4000/blog/IRC/Memory-ProcessHollowing" rel="alternate" type="text/html" title="How to identify process hollowing in a memory image?" /><published>2021-03-20T00:00:00+03:00</published><updated>2021-03-20T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Memory-ProcessHollowing</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Memory-ProcessHollowing">&lt;h3 id=&quot;what-is-process-hollowing&quot;&gt;What is Process Hollowing?&lt;/h3&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Memory Investigation" /><summary type="html">Let’s check 1st advanced challenge (2nd Base) in (incident-response-challenge.com) website and try to solve it.</summary></entry><entry><title type="html">How to identify process hollowing in a memory image?</title><link href="http://localhost:4000/blog/IRC/Memory-ProcessHollowing" rel="alternate" type="text/html" title="How to identify process hollowing in a memory image?" /><published>2021-03-20T00:00:00+03:00</published><updated>2021-03-20T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Memory-ProcessHollowing</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Memory-ProcessHollowing">&lt;h3 id=&quot;what-is-process-hollowing&quot;&gt;What is Process Hollowing?&lt;/h3&gt;
 &lt;p&gt;Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;How does Process Hollowing process gets accomplished?&lt;/strong&gt;&lt;/p&gt;
@@ -486,6 +514,7 @@ Alternative option is to dump the malicious process executable image as well and
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;https://imphash.medium.com/windows-process-internals-a-few-concepts-to-know-before-jumping-on-memory-forensics-823d72d4d7b8&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Memory Investigation" /><summary type="html">What is Process Hollowing? Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code.</summary></entry><entry><title type="html">How to find out if there is persistence using Image File Execution Options (IFEO)?</title><link href="http://localhost:4000/blog/IRC/Persistence-IFEO" rel="alternate" type="text/html" title="How to find out if there is persistence using Image File Execution Options (IFEO)?" /><published>2021-03-12T00:00:00+03:00</published><updated>2021-03-12T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-IFEO</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-IFEO">&lt;h3 id=&quot;what-is-image-file-execution-options-ifeo&quot;&gt;What is Image File Execution Options (IFEO)?&lt;/h3&gt;
 &lt;p&gt;IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.&lt;br /&gt;&lt;/p&gt;
@@ -579,6 +608,7 @@ Let’s check 7th medium challenge (Universal) in (incident-response-challenge.c
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags&lt;/li&gt;
   &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit&lt;/li&gt;
   &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/enable-silent-process-exit-monitoring&lt;/li&gt;
@@ -646,6 +676,7 @@ Let’s check 7th easy challenge (Sports) in (incident-response-challenge.com) w
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;https://attack.mitre.org/techniques/T1547/001/&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Persistence" /><summary type="html">Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.</summary></entry><entry><title type="html">How to prove there was a lateral movement using PsExec via EventLogs?</title><link href="http://localhost:4000/blog/IRC/Lateral-Movement-PsExec" rel="alternate" type="text/html" title="How to prove there was a lateral movement using PsExec via EventLogs?" /><published>2021-02-21T19:45:00+03:00</published><updated>2021-02-21T19:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/Lateral-Movement-PsExec</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Lateral-Movement-PsExec">&lt;p&gt;In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.&lt;/p&gt;
 
@@ -850,6 +881,7 @@ This can be changed; however, using -r option once executing PsExec in the sourc
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf&lt;/li&gt;
   &lt;li&gt;https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648&lt;/li&gt;
   &lt;li&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec&lt;/li&gt;
@@ -906,7 +938,12 @@ The provided evidence is the user’s profile as well as eventlogs.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/blog/assets/images/210216-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;Uncutedition1@#&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.</summary></entry><entry><title type="html">What folders were accessed by a specific user?</title><link href="http://localhost:4000/blog/IRC/folder-access" rel="alternate" type="text/html" title="What folders were accessed by a specific user?" /><published>2021-02-13T16:55:00+03:00</published><updated>2021-02-13T16:55:00+03:00</updated><id>http://localhost:4000/blog/IRC/folder-access</id><content type="html" xml:base="http://localhost:4000/blog/IRC/folder-access">&lt;p&gt;Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.&lt;/p&gt;
+&lt;p&gt;Uncutedition1@#&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.</summary></entry><entry><title type="html">What folders were accessed by a specific user?</title><link href="http://localhost:4000/blog/IRC/folder-access" rel="alternate" type="text/html" title="What folders were accessed by a specific user?" /><published>2021-02-13T16:55:00+03:00</published><updated>2021-02-13T16:55:00+03:00</updated><id>http://localhost:4000/blog/IRC/folder-access</id><content type="html" xml:base="http://localhost:4000/blog/IRC/folder-access">&lt;p&gt;Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -992,7 +1029,12 @@ Let’s check 1st medium challenge (Can’t touch this) in (incident-response-ch
 &lt;p&gt;&lt;img src=&quot;/blog/assets/images/210213-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;12:41:26&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Shellbags" /><summary type="html">Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.</summary></entry><entry><title type="html">Was a USB connected to system?</title><link href="http://localhost:4000/blog/IRC/usb-investigation" rel="alternate" type="text/html" title="Was a USB connected to system?" /><published>2021-02-06T13:45:00+03:00</published><updated>2021-02-06T13:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/usb-investigation</id><content type="html" xml:base="http://localhost:4000/blog/IRC/usb-investigation">&lt;p&gt;Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its&lt;/p&gt;
+&lt;p&gt;12:41:26&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Shellbags" /><summary type="html">Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.</summary></entry><entry><title type="html">Was a USB connected to system?</title><link href="http://localhost:4000/blog/IRC/usb-investigation" rel="alternate" type="text/html" title="Was a USB connected to system?" /><published>2021-02-06T13:45:00+03:00</published><updated>2021-02-06T13:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/usb-investigation</id><content type="html" xml:base="http://localhost:4000/blog/IRC/usb-investigation">&lt;p&gt;Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Maker&lt;/li&gt;
   &lt;li&gt;Serial Number/UID&lt;/li&gt;
@@ -1069,6 +1111,9 @@ SYSTEM\ControlSet001\Enum\USBSTOR&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;
-1.https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416
-2.https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its Maker Serial Number/UID USB Connection Date/Time</summary></entry></feed>
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416&lt;/li&gt;
+  &lt;li&gt;https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its Maker Serial Number/UID USB Connection Date/Time</summary></entry></feed>

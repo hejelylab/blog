@@ -55,3 +55,6 @@ By looking at the aggregated bitmap image (it contains the word *collage* in the
 
 ### Answer to the challenge
 Uncutedition1@#
+
+**References**
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)

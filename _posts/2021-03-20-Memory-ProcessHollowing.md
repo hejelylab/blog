@@ -82,7 +82,8 @@ Alternative option is to dump the malicious process executable image as well and
 
 
 **References**
-1. https://imphash.medium.com/windows-process-internals-a-few-concepts-to-know-before-jumping-on-memory-forensics-823d72d4d7b8
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
+2. https://imphash.medium.com/windows-process-internals-a-few-concepts-to-know-before-jumping-on-memory-forensics-823d72d4d7b8
 
 
 

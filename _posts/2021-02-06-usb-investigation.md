@@ -81,5 +81,6 @@ The followng screenshot shows these evidence
 ![third screenshot]({{site.baseurl}}/assets/images/210206-3.png)
 
 **References**
-1.https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416
-2.https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
+2. https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416
+3. https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf

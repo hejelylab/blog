@@ -6,6 +6,8 @@ permalink: /IRC/Memory-CompareImages
 categories: [IRC, Digital Forensics, Memory Investigation]
 ---
 
+Let's check 1st advanced challenge (2nd Base) in (incident-response-challenge.com) website and try to solve it.
+
 ### 13th Challenge
 
 This challenge tells there is a malicious process in a memory image and asked if we can identify this by comparing the memory image against another clean memory image.
@@ -41,7 +43,8 @@ With same approach with comparing processes between images, we can compare drive
 - driverbl
 	
 
-
+**References**
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
 
 
 

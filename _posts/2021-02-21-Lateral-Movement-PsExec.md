@@ -156,6 +156,7 @@ This can be changed; however, using -r option once executing PsExec in the sourc
 
 
 **References**
-1. https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf
-2. https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648
-3. https://docs.microsoft.com/en-us/sysinternals/downloads/psexec
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
+2. https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf
+3. https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648
+4. https://docs.microsoft.com/en-us/sysinternals/downloads/psexec

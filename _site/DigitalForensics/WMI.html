@@ -24,7 +24,7 @@
 {"dateModified":"2021-04-10T17:15:00+03:00","datePublished":"2021-04-10T17:15:00+03:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/DigitalForensics/WMI"},"author":{"@type":"Person","name":"HejelyLab"},"url":"http://localhost:4000/blog/DigitalForensics/WMI","description":"What is Windows Management Instrumentation (WMI)?","headline":"Windows Management Instrumentation (WMI)","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <link rel="stylesheet" href="/blog/assets/css/style.css?v=6a2b194c311cb383ff5568f7fd50b5aa11d0e501">
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=da09fbe85bdfab88bc5fb70375b8b4339181f754">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="/blog/assets/js/respond.js"></script>
     <!--[if lt IE 9]>
@@ -210,14 +210,14 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
     <ul>
       <li>Security Event logs<br />
       You need to have Command Line Auditing Enabled.
-      No logs appeared to me in this example if command line logging is not enabled and sysmon is installed.
+      No logs appeared to me in this example if command line logging is not enabled and sysmon is not installed.
         <ul>
           <li>Source
             <ul>
               <li>Security logs, event ID: 4688
                 <ul>
                   <li>Process name: WMIC.exe</li>
-                  <li>Parent process name: cmd.exe</li>
+                  <li>Parent process name: powershell.exe</li>
                 </ul>
               </li>
             </ul>
@@ -226,8 +226,14 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
             <ul>
               <li>Security logs, event ID: 4688
                 <ul>
-                  <li>Process name: calc.exe</li>
+                  <li>Process name: cmd.exe</li>
                   <li>Parent process name: WmiPrvSE.exe</li>
+                </ul>
+              </li>
+              <li>Security logs, event ID: 4688
+                <ul>
+                  <li>Process name: ipconfig.exe</li>
+                  <li>Parent process name: cmd.exe</li>
                 </ul>
               </li>
             </ul>
@@ -241,7 +247,7 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
               <li>Sysmon logs, event ID: 1
                 <ul>
                   <li>Process name: WMIC.exe</li>
-                  <li>Parent process name: cmd.exe</li>
+                  <li>Parent process name: powershell.exe</li>
                 </ul>
               </li>
             </ul>
@@ -250,8 +256,14 @@ Communication will appear over port TCP 135 in the beginning, and then later a r
             <ul>
               <li>Sysmon logs, event ID: 1
                 <ul>
-                  <li>Process name: calc.exe</li>
+                  <li>Process name: cmd.exe</li>
                   <li>Parent process name: WmiPrvSE.exe</li>
+                </ul>
+              </li>
+              <li>Sysmon logs, event ID: 1
+                <ul>
+                  <li>Process name: ipconfig.exe</li>
+                  <li>Parent process name: cmd.exe</li>
                 </ul>
               </li>
             </ul>
@@ -275,7 +287,7 @@ Steps: <br /></p>
     <ul>
       <li>Event Trigger (Class __EventFilter)
         <ul>
-          <li>An example, event trigger is a specific date, an event that occurs on thestem (notepad.exe starts)</li>
+          <li>An example, event trigger is a specific date, an event that occurs on the system (notepad.exe starts)</li>
         </ul>
       </li>
       <li>Event Consumer (Class __EventConsumer)

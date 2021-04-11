@@ -92,7 +92,8 @@ ZmxhZy17Rm91bmRJdH0.exe
 
 
 **References**
-1. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags
-2. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit
-3. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/enable-silent-process-exit-monitoring
-4. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
+2. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags
+3. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit
+4. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/enable-silent-process-exit-monitoring
+5. https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit

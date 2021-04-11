@@ -8,6 +8,10 @@ categories: [IRC, Digital Forensics, Persistence]
 
 If you would like to know about WMI, this post explains [WMI in Details](https://hejelylab.github.io/blog/DigitalForensics/WMI)
 
+---
+
+Let's check 3rd medium challenge (WhoaMI) in (incident-response-challenge.com) website and try to solve it.
+
 ### 14th Challenge
 
 This challenge states there is a persistence mechanism that's related to powershell and CMD.
@@ -21,3 +25,6 @@ You can find the tool here: [PyWMIPersistenceFinder](https://github.com/davidpan
 
 ### Answer to the challenge
 C:\temp\addadmin.ps1
+
+**References**
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)

@@ -81,5 +81,6 @@ Number of execution: 4<br>
 Time Stamp: 07-02-2020 21:26<br>
 
 **References**
-1. https://www.hexacorn.com/blog/2012/06/13/prefetch-hash-calculator-a-hash-lookup-table-xpvistaw7w2k3w2k8/
-2. https://hiddenillusion.github.io/2016/05/10/go-prefetch-yourself/
+1. The challenge used in this post belongs to [incident-response-challenge.com](https://incident-response-challenge.com/)
+2. https://www.hexacorn.com/blog/2012/06/13/prefetch-hash-calculator-a-hash-lookup-table-xpvistaw7w2k3w2k8/
+3. https://hiddenillusion.github.io/2016/05/10/go-prefetch-yourself/
