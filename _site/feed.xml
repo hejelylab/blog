@@ -1,4 +1,148 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2024-05-03T20:42:41+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>DFIR | Threat Hunting</subtitle><author><name>HejelyLab</name></author><entry><title type="html">How to find out if there is persistence using WMI?</title><link href="http://localhost:4000/blog/IRC/Persistence-WMI" rel="alternate" type="text/html" title="How to find out if there is persistence using WMI?" /><published>2021-04-10T17:16:00+03:00</published><updated>2021-04-10T17:16:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-WMI</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-WMI">&lt;p&gt;If you would like to know about WMI, this post explains &lt;a href=&quot;https://hejelylab.github.io/blog/DigitalForensics/WMI&quot;&gt;WMI in Details&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2024-05-04T18:52:31+03:00</updated><id>http://localhost:4000/blog/feed.xml</id><title type="html">Hejely Lab</title><subtitle>DFIR | Threat Hunting</subtitle><author><name>HejelyLab</name></author><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Evidence Collection</title><link href="http://localhost:4000/blog/IRandTHSeries/EvidenceCollection" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Evidence Collection" /><published>2024-05-03T19:45:00+03:00</published><updated>2024-05-03T19:45:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Evidence-Collection</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/EvidenceCollection">&lt;p&gt;&lt;strong&gt;KAPE Targets&lt;/strong&gt;
+Let’s explore the concept of Triage Acquisition within the context of Incident Response and Threat Hunting. &lt;br /&gt;
+Triage Acquisition involves obtaining specific files or artifacts that provide insights into the system’s state we are analyzing.&lt;/p&gt;
+
+&lt;p&gt;In a simplified lessons series focused on Evidence Acquisition at the AD Environment level, we’ll discuss several ideas. In this video, we’ll delve into the first concept: using KAPE Targets. This tool stands out for its effectiveness in evidence collection.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=JJVuo8aLcYw&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Evidence Collection: KAPE [ARABIC]&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Custom Evidence Collection&lt;/strong&gt;
+In this lesson, we’ll explore the second concept: collecting evidence when there are no known pre-defined artifacts or targets.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=MhqU3UN4kME&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Evidence Collection: Custom [ARABIC]&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Offline Collection&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In the previous lessons, the execution relied on a fundamental point: running Velociraptor as a Client/Server role.&lt;/p&gt;
+
+&lt;p&gt;Now, in this lesson, we will explore a completely different execution method that enables us to collect evidence even when communication with the client systems is challenging. This could be due to the absence of communication via Public IP or the difficulty of our physical presence on site to perform the acquisition task as Incident Responders.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=J6TNlQzbCZw&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Evidence Collection: Offline [ARABIC]&lt;/a&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><summary type="html">KAPE Targets Let’s explore the concept of Triage Acquisition within the context of Incident Response and Threat Hunting. Triage Acquisition involves obtaining specific files or artifacts that provide insights into the system’s state we are analyzing.</summary></entry><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Autoruns</title><link href="http://localhost:4000/blog/IRandTHSeries/Autoruns" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Autoruns" /><published>2024-05-03T19:30:00+03:00</published><updated>2024-05-03T19:30:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Autoruns</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/Autoruns">&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;
+Let’s say our objective is to determine whether there is persistence during system boot or login, one of the most straightforward and effective methods is to use Microsoft Sysinternals Autoruns.&lt;/p&gt;
+
+&lt;p&gt;Another point we’ll address in this lesson is whether the presence of verified applications at the AD Environment level is sufficient evidence to trust these applications. &lt;br /&gt;
+Specifically, we’ll explore how to recognize and detect the technique known as “Subvert Trust Controls: Install Root Certificate” (T1553.004). &lt;br /&gt;
+To achieve this, we’ll need to analyze the behavior of applications, their digital signatures, and any potential deviations from expected trust controls.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=Qua-fypWhnk&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Autoruns [ARABIC]&lt;/a&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><category term="Persistence" /><summary type="html">Description Let’s say our objective is to determine whether there is persistence during system boot or login, one of the most straightforward and effective methods is to use Microsoft Sysinternals Autoruns.</summary></entry><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Search Files &amp;amp; Content</title><link href="http://localhost:4000/blog/IRandTHSeries/SearchFilesandContent" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Search Files &amp;amp; Content" /><published>2024-05-03T19:15:00+03:00</published><updated>2024-05-03T19:15:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Search-Files-and-Content</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/SearchFilesandContent">&lt;p&gt;&lt;strong&gt;Search Files &amp;amp; Content: Introduction&lt;/strong&gt;
+This lesson will be an introductory overview for a short sub-series focused on the topic of file search and their contents within the AD Environment. The search method will vary based on the available data, whether it’s the file name, hash, or distinctive content of these files&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=c8Jc904VQXI&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Search Files &amp;amp; Content: Introduction [ARABIC]&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Search Files &amp;amp; Content: Known File Name&lt;/strong&gt;
+In this lesson, we will discuss the first point in the series of searching for files and their contents at the AD Environment level. &lt;br /&gt;
+Let’s assume, for example, that we have a specific file name and we want to know whether it exists in our Environment or not, whether we have prior knowledge of the folder that contains it or not.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The most important point in this lesson is that the MFT (Master File Table) is an open book that we can search directly without the need to obtain it or even parse its contents. Taking this point into consideration, we can increase the effectiveness of dealing with this type of search and avoid the conventional search for files.
+&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=lik8OD6gPiY&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Search Files &amp;amp; Content: Known File Name [ARABIC]&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Search Files &amp;amp; Content: Hash&lt;/strong&gt;
+In this lesson, we will delve into the second point of the file search and its contents within the AD Environment series.&lt;/p&gt;
+
+&lt;p&gt;In the previous lesson, we explored how to search for files when we have prior knowledge of the file name. However, let’s assume that the file’s name has been changed, and its location is unknown. But we have complete knowledge of the file’s content and, consequently, its unique hash. &lt;br /&gt;
+In this scenario, the previous search method won’t be effective, and our next option will be to use the hash in several efficient ways to access the desired files.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=I6gJIyBI9r0&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Search Files &amp;amp; Content: Hash [ARABIC]&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Search Files &amp;amp; Content: YARA&lt;/strong&gt;
+In this lesson, we will explore the third point in the series of searching for files and their contents within the AD Environment.&lt;/p&gt;
+
+&lt;p&gt;In the previous lessons, we learned how to search for files:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;By knowing the file name, whether we have prior knowledge of the folder containing it or not.&lt;/li&gt;
+  &lt;li&gt;By having complete knowledge of the file’s content and its hash.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But what if we don’t have all this information?&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Let’s assume, for example, that the desired content is inside a compressed file, and we don’t know the file name or its location. In such cases, our expected option would be to search for distinctive content within files using YARA rules.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=SHIfnCqIg0I&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Search Files &amp;amp; Content: YARA [ARABIC]&lt;/a&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><summary type="html">Search Files &amp;amp; Content: Introduction This lesson will be an introductory overview for a short sub-series focused on the topic of file search and their contents within the AD Environment. The search method will vary based on the available data, whether it’s the file name, hash, or distinctive content of these files</summary></entry><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Asset Inventory</title><link href="http://localhost:4000/blog/IRandTHSeries/AssetInventory" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Asset Inventory" /><published>2024-05-03T19:00:00+03:00</published><updated>2024-05-03T19:00:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Asset-Inventory</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/AssetInventory">&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;
+Starting from this lesson, we will begin using various and different artifacts to form a clear picture of several important aspects in the field of Incident Response and Threat Hunting. &lt;br /&gt;
+In this lesson, our main topic will be Asset Inventory.
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The goal is to obtain information similar to the following:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Basic information about the systems being analyzed.&lt;/li&gt;
+  &lt;li&gt;What are the Internal IP Addresses, even in cases where there are multiple network interfaces for these systems.&lt;/li&gt;
+  &lt;li&gt;What are the Public IP Addresses of the analyzed systems.&lt;/li&gt;
+  &lt;li&gt;What are the Firewall Rules present on the systems, in case you want to identify outliers.&lt;/li&gt;
+  &lt;li&gt;Who are the Local Administrators on the systems, if you want to identify outliers.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;While the topic may seem simple on the surface, it has a significant impact on understanding incidents and handling them efficiently.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=amI-4H8-otc&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Asset Inventory [ARABIC]&lt;/a&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><summary type="html">Description Starting from this lesson, we will begin using various and different artifacts to form a clear picture of several important aspects in the field of Incident Response and Threat Hunting. In this lesson, our main topic will be Asset Inventory.</summary></entry><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Velociraptor EDR GUI Introduction</title><link href="http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRGUI" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Velociraptor EDR GUI Introduction" /><published>2024-05-03T18:45:00+03:00</published><updated>2024-05-03T18:45:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Velociraptor-EDR-GUI-Introduction</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRGUI">&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;
+After we installed Velociraptor in the Active Directory Domain Environment in the previous videos, it’s time to explore the important pivotal points in the user interface that will appear to us as Incident Responders, and how to perform a simple Hunt as a prelude to more advanced topics.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=h4MzEXtdAKY&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR GUI Introduction [ARABIC]&lt;/a&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><summary type="html">Description After we installed Velociraptor in the Active Directory Domain Environment in the previous videos, it’s time to explore the important pivotal points in the user interface that will appear to us as Incident Responders, and how to perform a simple Hunt as a prelude to more advanced topics.</summary></entry><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain</title><link href="http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRDeployment" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain" /><published>2024-05-03T18:30:00+03:00</published><updated>2024-05-03T18:30:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Velociraptor-EDR-Deployment</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRDeployment">&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;
+Collecting evidence and obtaining information and artifacts is one of the most important stages during incident handling, especially when dealing with hundreds or thousands of systems. In this series, we will use Velociraptor Open-source EDR for its many advantages that facilitate expected tasks during Incident Response and Threat Hunting. There are more than one way to deploy Velociraptor, and we will explore two methods in this series:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Agentless Deployment.&lt;/li&gt;
+  &lt;li&gt;Deployment as a service.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Agentless Deployment&lt;/strong&gt;
+To deploy Velociraptor as Agentless, we can follow this lesson &lt;br /&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=DmKhLo5n5lE&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Agentless Deployment [ARABIC]&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;EDR Deployment as a Service&lt;/strong&gt;
+To apply the second method, which is Deployment as a service we can follow the below link &lt;br /&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=00vVfBWwxes&quot;&gt;IR &amp;amp; TH Series - Velociraptor EDR Deployment as a Service [ARABIC]&lt;/a&gt; &lt;br /&gt;
+The benefit of using this method is the presence of the Velociraptor Service even after a system restart.&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><summary type="html">Description Collecting evidence and obtaining information and artifacts is one of the most important stages during incident handling, especially when dealing with hundreds or thousands of systems. In this series, we will use Velociraptor Open-source EDR for its many advantages that facilitate expected tasks during Incident Response and Threat Hunting. There are more than one way to deploy Velociraptor, and we will explore two methods in this series: Agentless Deployment. Deployment as a service.</summary></entry><entry><title type="html">Incident Response &amp;amp; Threat Hunting Series, Introduction</title><link href="http://localhost:4000/blog/IRandTHSeries/Introduction" rel="alternate" type="text/html" title="Incident Response &amp;amp; Threat Hunting Series, Introduction" /><published>2024-05-03T18:15:00+03:00</published><updated>2024-05-03T18:15:00+03:00</updated><id>http://localhost:4000/blog/IRandTHSeries/Introduction</id><content type="html" xml:base="http://localhost:4000/blog/IRandTHSeries/Introduction">&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;
+This post is a reflection to the first video in a series of specialized educational videos covering various important topics in cybersecurity. The series includes practical implementation and direct execution of all the ideas we discuss. The goal is to spread knowledge related to cybersecurity.&lt;/p&gt;
+
+&lt;p&gt;I hope one day I will provide an English version of all the content that is available in Arabic.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Video Link&lt;/strong&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=pEqWismot-8&quot;&gt;IR &amp;amp; TH Series - Introduction [ARABIC]&lt;/a&gt;&lt;/p&gt;</content><author><name>HejelyLab</name></author><category term="Incident Response &amp; Threat Hunting Series" /><summary type="html">Description This post is a reflection to the first video in a series of specialized educational videos covering various important topics in cybersecurity. The series includes practical implementation and direct execution of all the ideas we discuss. The goal is to spread knowledge related to cybersecurity.</summary></entry><entry><title type="html">How to find out if there is persistence using WMI?</title><link href="http://localhost:4000/blog/IRC/Persistence-WMI" rel="alternate" type="text/html" title="How to find out if there is persistence using WMI?" /><published>2021-04-10T17:16:00+03:00</published><updated>2021-04-10T17:16:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-WMI</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-WMI">&lt;p&gt;If you would like to know about WMI, this post explains &lt;a href=&quot;https://hejelylab.github.io/blog/DigitalForensics/WMI&quot;&gt;WMI in Details&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -436,684 +580,4 @@ We can fetch this infomation using the following powershell cmdlets&lt;br /&gt;
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Memory Investigation" /><summary type="html">Let’s check 1st advanced challenge (2nd Base) in (incident-response-challenge.com) website and try to solve it.</summary></entry><entry><title type="html">How to identify process hollowing in a memory image?</title><link href="http://localhost:4000/blog/IRC/Memory-ProcessHollowing" rel="alternate" type="text/html" title="How to identify process hollowing in a memory image?" /><published>2021-03-20T00:00:00+03:00</published><updated>2021-03-20T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Memory-ProcessHollowing</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Memory-ProcessHollowing">&lt;h3 id=&quot;what-is-process-hollowing&quot;&gt;What is Process Hollowing?&lt;/h3&gt;
-&lt;p&gt;Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;How does Process Hollowing process gets accomplished?&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Malicious process creates a legitimate process in a suspended state using CreateProcess() function.&lt;/li&gt;
-  &lt;li&gt;The legitimate process memory gets hollowed out to have the malicious code replaces the original code. This is performed by calling NtUnmapViewOfSection or ZwUnmapViewofSection functions.&lt;/li&gt;
-  &lt;li&gt;Allocated a new memory in the original process using VirtualAllocEx()&lt;/li&gt;
-  &lt;li&gt;The allocated memory gets written into with the malicious code using WriteProcessMemory()&lt;/li&gt;
-  &lt;li&gt;Process ends the suspended state by invoking ResumeThread()&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;12th-challenge&quot;&gt;12th Challenge&lt;/h3&gt;
-
-&lt;p&gt;Let’s check 6th advanced challenge (Frog Find) in (incident-response-challenge.com) website and try to solve it.
-&lt;img src=&quot;/blog/assets/images/210320-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The challenge stresses that there is “frog” hidden in a process.&lt;/p&gt;
-
-&lt;p&gt;First thing we will do is to find memory image profile using volatility imageinfo plugin.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vol.py -f THEEYRIE.dmp imageinfo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210320-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;How to identify process hollowing from a memory image?&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;When an application gets executed, memory regions/pages are assigned to this executable in memory so process content has defined regions in the memory to get executed.&lt;/li&gt;
-  &lt;li&gt;Every process has what is called Executive Process Structure (_EPROCESS). This EPROCESS contains fields which provide information about the process and points to other structures such as Virtual Address Descriptor (VAD).&lt;/li&gt;
-  &lt;li&gt;One of the EPROCESS fields is something called ActiveProcessLinks which is part of a complete doubly linked list structures that circulates all the existing processes in memory.&lt;/li&gt;
-  &lt;li&gt;When we run imageinfo or kdbgscan plugins, we identify what’s called PsActiveProcessHead.&lt;/li&gt;
-  &lt;li&gt;PsActiveProcessHead points to the doubly linked list ActiveProcessLink of the process “System”. Now, traversing other processes is achievable as this is doubly linked list (In doubly linked list there are two links to the next and to the previous nodes in every node)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210320-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Remember, VAD structure is one of the structures that EPROCESS points to.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;What is VAD?&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;VAD trackes the memory pages that are allocated to a process.&lt;/li&gt;
-  &lt;li&gt;Volatility malfind plugin searches for VAD entries that represent memory pages which are dynamically allocated during runtime using API calls such as VirtualAllocEx as what occurs in process hollowing.&lt;/li&gt;
-  &lt;li&gt;Not only that, it looks if these memory pages contain PAGE_EXECUTE_READWRITE permission and looks if instructions inside it represent PE header (Windows executable header)&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Execute malfind against the memory using one of the suggested profiles from imageinfo
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vol.py -f THEEYRIE.dmp --profile=Win10x64_17134 malfind&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210320-4.png&quot; alt=&quot;fourth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The only candidate which contains an executable (MZ header) is this process chrome.exe with process ID 1996&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210320-5.png&quot; alt=&quot;fifth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Dump chrome.exe process memory (memdump)&lt;/strong&gt;
-We can identify if there is malicious content by dumping the whole process memory pages that are assigned to this suspicious process using memdump plugin&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vol.py -f THEEYRIE.dmp --profile=Win10x64_17134 memdump -p1996 -D chromeDump/&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210320-6.png&quot; alt=&quot;sixth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;Frog-FWGA142FS&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;alternative-approach&quot;&gt;Alternative Approach&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Dump chrome.exe process executable (procdump)&lt;/strong&gt;
-Alternative option is to dump the malicious process executable image as well and perform the same check&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vol.py -f THEEYRIE.dmp --profile=Win10x64_17134 procdump -p 1996 --dump-dir 1996PID_Executable/&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210320-7.png&quot; alt=&quot;seventh screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://imphash.medium.com/windows-process-internals-a-few-concepts-to-know-before-jumping-on-memory-forensics-823d72d4d7b8&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Memory Investigation" /><summary type="html">What is Process Hollowing? Process hollowing occurs when a malware launches a process in a suspended state and then deallocates the process memory which contains the original program’s code (Hollow process memory out), and replaces it with the malicious content/code.</summary></entry><entry><title type="html">How to find out if there is persistence using Image File Execution Options (IFEO)?</title><link href="http://localhost:4000/blog/IRC/Persistence-IFEO" rel="alternate" type="text/html" title="How to find out if there is persistence using Image File Execution Options (IFEO)?" /><published>2021-03-12T00:00:00+03:00</published><updated>2021-03-12T00:00:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-IFEO</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-IFEO">&lt;h3 id=&quot;what-is-image-file-execution-options-ifeo&quot;&gt;What is Image File Execution Options (IFEO)?&lt;/h3&gt;
-&lt;p&gt;IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;How to set IFEO?&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Using the registry&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Using GFlags tool&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;ifeo-types-with-implementation&quot;&gt;IFEO Types with implementation&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;First Implementation&lt;/strong&gt;
- Create a debugger to a process in this registry key&lt;br /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\&amp;lt;ProcessName&amp;gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;ProcessName is a registry key that has the name of the process we would like to attach a debugger to it.
-The following example tells the debugger for notepad.exe will be calc.exe&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-Initially, IFEO Key looks like this
-Now, we’ll add a key named notepad.exe
-&lt;img src=&quot;/blog/assets/images/210312-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As below, Debugger is now calc.exe, whenever notepad.exe is set to be executed, the debugger “calc” will be run
-&lt;img src=&quot;/blog/assets/images/210312-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Second Implementation&lt;/strong&gt;
-Launch a process/program when another application silently exits&lt;br /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;Silent exit for an application means the application has been terminated in one of two ways&lt;/dt&gt;
-    &lt;dd&gt;Self termination by calling ExitProcess&lt;/dd&gt;
-    &lt;dd&gt;Another process terminates the monitored process by calling TerminateProcess&lt;/dd&gt;
-  &lt;/dl&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This can be set in the following registry key&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;HKLM\Software\Microsoft\Windows NT\CurrentVersion\SilentProcessExit&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-We’ll run calc.exe once notepad.exe is silently exiting.&lt;br /&gt;
-First, we’ll enable silent process exit monitoring by adding GlobalFlag name with hexadecimal value of 200 in notepad.exe key under IFEO key&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210312-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We’ll create SilentProcessExit key under CurrentVersion, and under this key we’ll add subkey named notepad.exe&lt;/p&gt;
-
-&lt;p&gt;By adding both 
-MonitorProcess value to be calc.exe, and ReportingMode to 1,
-now every silent exit of notepad.exe will trigger calc.exe to be run.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210312-4.png&quot; alt=&quot;fourth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;An example of how this appears&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210312-5.gif&quot; alt=&quot;fifth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Example
-Let’s check 7th medium challenge (Universal) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
-
-&lt;p&gt;Used tools here will be Registry Explorer to navigate through the registry keys&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;11th-challenge&quot;&gt;11th Challenge&lt;/h3&gt;
-
-&lt;p&gt;This challenge tells an occasional popup for CMD happens which seems to be a persistence pattern.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210312-6.png&quot; alt=&quot;sixth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We’ll check both registry keys that we have mentioned using Registry Explorer as the evidence mentions Global Flags in the provided evidence&lt;/p&gt;
-
-&lt;p&gt;System Regsitry hives are in C:\Windows\System32\config, we’ll only parse Software registry hive&lt;/p&gt;
-
-&lt;p&gt;In Image File Execution Options, we notice the value name GloabalFlag exists&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210312-7.png&quot; alt=&quot;seventh screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And under SilentProcessExit key, and notepad.exe subkey, we notice the monitoring process is an executable under temp directory which will run whenever a silent exit occurs for notepad.exe&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210312-8.png&quot; alt=&quot;eighth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;ZmxhZy17Rm91bmRJdH0.exe&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags&lt;/li&gt;
-  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit&lt;/li&gt;
-  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/enable-silent-process-exit-monitoring&lt;/li&gt;
-  &lt;li&gt;https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/registry-entries-for-silent-process-exit&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Persistence" /><summary type="html">What is Image File Execution Options (IFEO)? IFEO is a feature which lets developers attach a debugger to an application/process. This allows to run the debugger/application at the time of running the application we wish to debug.</summary></entry><entry><title type="html">How to find out if there is persistence using Registry run keys or Startup Folders?</title><link href="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys" rel="alternate" type="text/html" title="How to find out if there is persistence using Registry run keys or Startup Folders?" /><published>2021-03-02T18:15:00+03:00</published><updated>2021-03-02T18:15:00+03:00</updated><id>http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Persistence-Registry-Run-Keys">&lt;p&gt;Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;what-are-the-startup-folders&quot;&gt;What are the startup folders?&lt;/h3&gt;
-&lt;p&gt;They are folders that are checked whenever each user logs in&lt;br /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;First path is under each user’s profile&lt;br /&gt;
-C:\Users\&amp;lt;username&amp;gt;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Second path is system wide path for all users&lt;br /&gt;
-C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;registry-run-keys&quot;&gt;Registry-Run-Keys&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Most used run keys for persistence are &lt;br /&gt;
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
-HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;&lt;strong&gt;Registry Parsing Tools&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;Registry explorer (SYSTEM Hive)&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;RECmd&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;RegRipper&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;etc.&lt;br /&gt;&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-Let’s check 7th easy challenge (Sports) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
-
-&lt;p&gt;Used tools here will be Registry Explorer to navigate through the registry keys&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;10th-challenge&quot;&gt;10th Challenge&lt;/h3&gt;
-
-&lt;p&gt;This challenge asks to look at the user’s profile “Sansa”, as there might be something when waking up!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210302-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We’ll parse NTUSER.DAT of the mentioned user, and navigate to Run (User run key) using the existing bookmarked keys.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210302-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can see an executable runs everytime this user logs in, which is under public user profile&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210302-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;Frag-AGREWEHDFG.exe&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://attack.mitre.org/techniques/T1547/001/&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Persistence" /><summary type="html">Out of many persistence techniques, one of the most common ones is the usage of Registry run Keys or Startup Folders. This will cause an added application to be executed whenever a user logs in.</summary></entry><entry><title type="html">How to prove there was a lateral movement using PsExec via EventLogs?</title><link href="http://localhost:4000/blog/IRC/Lateral-Movement-PsExec" rel="alternate" type="text/html" title="How to prove there was a lateral movement using PsExec via EventLogs?" /><published>2021-02-21T19:45:00+03:00</published><updated>2021-02-21T19:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/Lateral-Movement-PsExec</id><content type="html" xml:base="http://localhost:4000/blog/IRC/Lateral-Movement-PsExec">&lt;p&gt;In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;what-is-psexec&quot;&gt;What is PsExec?&lt;/h3&gt;
-&lt;p&gt;It’s a tool that lets you execute processes on other systems.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;An example of PsExec executing commands remotely&lt;/strong&gt;
-Let’s say we want to open a CMD window on a remote system&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;psexec \\RemoteIP -u DomainName\UserName -p UserPassword cmd&lt;/code&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Break it down&lt;br /&gt;
-we have psexec already installed on our system, and we run it from CMD connecting to a RemoteIP system with a valid username/password there, and eventually start a CMD instance on the other system&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;How does PsExec execute commands remotely?&lt;/strong&gt;
-Through interacting with Service Control Manager (SCM) via the network either through&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Remote Procedure Call (RPC) or&lt;/li&gt;
-  &lt;li&gt;Server Message Block (SMB).&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;PsExec Execution Steps (Example)&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Authentication completed on the target system&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;An Administrative share is mapped&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;PsExec service binary (PSEXESVC) is copied to the mapped share&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;PsExec communicates with SCM via the network to start the service binary (PSEXESVC)&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Starts the intended process/application on the target system&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;psexec-detection-via-eventlogs&quot;&gt;PsExec Detection via EventLogs&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Source System&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Security logs&lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Event ID: 4688 (PsExec Process Creation)&lt;/li&gt;
-      &lt;li&gt;Event ID: 4689 (PsExec Process has been exited)&lt;/li&gt;
-      &lt;li&gt;Event ID: 4648
-        &lt;ul&gt;
-          &lt;li&gt;Account Name(Under Subject section): the already logged on user on the source system&lt;/li&gt;
-          &lt;li&gt;Account Name (Under Account whose credentials were used section): the used account on the target system&lt;/li&gt;
-          &lt;li&gt;Target Server Name: target system&lt;/li&gt;
-          &lt;li&gt;Process Name: Used process (if no change to PsExec name, the executable info will have PsExec)&lt;/li&gt;
-          &lt;li&gt;Network Address: target IP&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Target System&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;System logs
-    &lt;ul&gt;
-      &lt;li&gt;Event ID: 7045 (PSEXESVC was installed)&lt;/li&gt;
-      &lt;li&gt;Event ID: 7036 (PSEXESVC service state has changed)
-        &lt;ul&gt;
-          &lt;li&gt;This event should appear twice once service has started (Executing state), and the second time when the service gets stopped (Stopped state)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Security logs
-    &lt;ul&gt;
-      &lt;li&gt;Event ID: 4624
-        &lt;ul&gt;
-          &lt;li&gt;Successful logon&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Event ID: 4672
-        &lt;ul&gt;
-          &lt;li&gt;Special privileges assigned to new logon&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Event ID: 5140
-        &lt;ul&gt;
-          &lt;li&gt;A network share object was accessed&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Event ID: 5145
-        &lt;ul&gt;
-          &lt;li&gt;A network share object was checked to see whether client can be granted desired access&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Event ID: 4656
-        &lt;ul&gt;
-          &lt;li&gt;A handle to an object was requested&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;Event ID: 4663
-        &lt;ul&gt;
-          &lt;li&gt;An attempt was made to access an object&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;&lt;strong&gt;Eventlogs Parsing/Viewing Tools&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;EvtxEcmd&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;Event Log Explorer&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;Timeline Explorer&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;etc.&lt;br /&gt;&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-Let’s check 4th medium challenge (Kiwi) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
-
-&lt;p&gt;Used tools here will be EvtxEcmd to parse eventlogs, and Timeline Explorer to view and filter eventlogs.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;9th-challenge&quot;&gt;9th Challenge&lt;/h3&gt;
-
-&lt;p&gt;This challenge tells an appearance of kiwi logo (Mimikatz) appeared on DESKTOP-HUB666E (172.16.44.135), this is probably due to lateral movement from other systems.&lt;/p&gt;
-
-&lt;p&gt;Provided evidence
-	- DESKTOP-HUB666E eventlogs
-	- WIN-IL7M7CC6UVU (DC) eventlogs&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Challenge Questions&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Provide another domain user account used by attacker aside from King-Slayer&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Provide target system IP when this user was used&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To solve this challenge, we’ll parse only Security and System eventlogs from the two systems provided eventlogs to detect if there is lateral movement occurred between them using PsExec&lt;br /&gt;
-&lt;br /&gt;
-&lt;strong&gt;Parsing Steps for each machine&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Copy only Security and System eventlogs into a directory named Logs2, for example.&lt;/li&gt;
-  &lt;li&gt;Run EvtxECmd on each directory as mentioned below&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;strong&gt;EvtxEcmd used command&lt;/strong&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;DESKTOP-HUB666E (172.16.44.135)&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EvtxECmd.exe -d &quot;C:\Users\%username%\Downloads\Challenges\Medium - PassTheHash - Event Logs - Kiwi\Challenge\KingSlayerHost- EventLogs\Logs2&quot; --csv . --csvf KingSlayerHost.csv&lt;/code&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;DC (WIN-IL7M7CC6UVU) (172.16.44.132)&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EvtxECmd.exe -d &quot;C:\Users\%username%\Downloads\Challenges\Medium - PassTheHash - Event Logs - Kiwi\Challenge\DC-EventLogs\Logs2&quot; --csv . --csvf DC.csv&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Let’s view the two file logs using Timeline Explorer&lt;/p&gt;
-
-&lt;p&gt;To determine source of lateral movement we will use the mentioned event IDs 4688,4689, and 4648 looking for PsExec in them&lt;/p&gt;
-
-&lt;p&gt;This event “4648” shows the execution of PsExec on Feb 9&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Event time: 2020-02-09 13:59:13&lt;br /&gt;
-To break the event into what we know&lt;br /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Subject Account Name: KingSlayer (Already logged on user)&lt;br /&gt;
-Target User name: Daenerys (User account which will be used on the target system)&lt;br /&gt;
-Target Server Name: WIN-IL7M7CC6UVU&lt;br /&gt;
-Process Name: C:\temp\Niceone\PSTools\PsExec.exe&lt;br /&gt;
-Target IP Address: 172.16.44.132&lt;br /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;IP address of target machine: 172.16.44.132&lt;br /&gt;
-Username: Daenerys&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;evidence-from-destination-system&quot;&gt;Evidence from destination system&lt;/h3&gt;
-
-&lt;p&gt;Security logs, Event IDs: 4624 &amp;amp; 4672&lt;br /&gt;
-Used pivot point: Daenerys&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;System logs, Event IDs: 7045 &amp;amp; 7036&lt;br /&gt;
-Used pivot point: PSEXESVC&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210221-4.png&quot; alt=&quot;fourth screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note&lt;br /&gt;
-In this example PSEXESVC service name wasn’t changed from default.
-This can be changed; however, using -r option once executing PsExec in the source system.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://www.jpcert.or.jp/english/pub/sr/20170612ac-ir_research_en.pdf&lt;/li&gt;
-  &lt;li&gt;https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4648&lt;/li&gt;
-  &lt;li&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Lateral Movement" /><summary type="html">In a digital forensics investigation, one of the important points to look for is lateral movement between systems in the environment. This post shows how to prove if there was lateral movement through Sysinternal PsExec tool using only Windows EventLogs as an evidence artifacts.</summary></entry><entry><title type="html">What information can you retrieve from lateral movement performed via RDP?</title><link href="http://localhost:4000/blog/IRC/RDP-Bitmap-Cache" rel="alternate" type="text/html" title="What information can you retrieve from lateral movement performed via RDP?" /><published>2021-02-16T01:20:00+03:00</published><updated>2021-02-16T01:20:00+03:00</updated><id>http://localhost:4000/blog/IRC/RDP-Bitmap-Cache</id><content type="html" xml:base="http://localhost:4000/blog/IRC/RDP-Bitmap-Cache">&lt;p&gt;In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;what-is-rdp-bitmap-cache&quot;&gt;What is RDP bitmap cache?&lt;/h3&gt;
-&lt;p&gt;When a user connects to another system using RDP, small size (bitmap) images are stored in their RDP profile files, so that once the same image is to be used in the session it can be fetched/pulled quicker. And the overall RDP session experience is enhanced in case of a slow connection. This artifact can help us sometimes in identifying what was the user seeing in their RDP sessions.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;RDP Bitmap Cache Location (Every user profile)&lt;/strong&gt;
-C:\Users\&amp;lt;username&amp;gt;\AppData\Local\Microsoft\Terminal Server Client\Cache&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;&lt;strong&gt;RDP Bitmap Cache Parsing Tools&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;bmc-tools.py&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;
-    &lt;blockquote&gt;
-      &lt;p&gt;This is the only tool I have used so far and it does the job perfectly&lt;br /&gt;
-Tool Link: &lt;a href=&quot;https://github.com/ANSSI-FR/bmc-tools&quot;&gt;bmc-tools&lt;/a&gt;&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-Let’s check 8th medium challenge (Notes) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;bmc-tools used command&lt;/strong&gt;
-Note: Python needs to be installed beforehand&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mkdir RDPBitMapOutput&lt;/code&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python bmc-tools.py -s &quot;C:\Users\%username%\Downloads\Challenges\Medium - BMCache - Notes\Challenge\littlefinger\AppData\Local\Microsoft\Terminal Server Client\Cache&quot; -d RDPBitMapOutput -b&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;mkdir to create a folder that contains the output of bmc-tools script&lt;br /&gt;
--s to point to RDP bitmap cache folder&lt;br /&gt;
--b will provide one bitmap image which aggregates all bitmap images.&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;8th-challenge&quot;&gt;8th Challenge&lt;/h3&gt;
-
-&lt;p&gt;This challenge tells that an access to Littlefinger’s session has been gained. 
-Later, the attacker connected to DC using vary-adm’s account.
-The provided evidence is the user’s profile as well as eventlogs.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210216-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;One of the first things to have in mind is what the attacker was seeing when they gained an access to Littlefinger’s sesion; Therefore, we’ll parse the RDP Bitmap Cache folder to know this using the aforementioned commmand.&lt;/p&gt;
-
-&lt;p&gt;By looking at the aggregated bitmap image (it contains the word &lt;em&gt;collage&lt;/em&gt; in the name of the file), we notice a note that contains the mentioned user vary-adm account and his password&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210216-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;Uncutedition1@#&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">In case of an investigation which consists of lateral movement using RDP, one of the most important evidence we would like to investigate is RDP bitmap Cache files.</summary></entry><entry><title type="html">What folders were accessed by a specific user?</title><link href="http://localhost:4000/blog/IRC/folder-access" rel="alternate" type="text/html" title="What folders were accessed by a specific user?" /><published>2021-02-13T16:55:00+03:00</published><updated>2021-02-13T16:55:00+03:00</updated><id>http://localhost:4000/blog/IRC/folder-access</id><content type="html" xml:base="http://localhost:4000/blog/IRC/folder-access">&lt;p&gt;Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;what-are-shellbags&quot;&gt;What are Shellbags?&lt;/h3&gt;
-&lt;p&gt;Shellbags are user’s registry keys which help in storing user’s view preferences of folders in Windows OS.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-You visit a specific folder, modify the way items are presented in that folder. Once visiting the same folder again, the previous view preference is rendered from Shellbag registry keys.
-Therefore, Shellbags may provide us an evidence of user’s access to folders.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;Shellbags keys are in the following DAT files in each user’s profile (these two DAT files are considered user’s registry files/hives)&lt;br /&gt;&lt;/dt&gt;
-  &lt;dd&gt;NTUSER.DAT&lt;/dd&gt;
-  &lt;dd&gt;UsrClass.dat&lt;br /&gt;&lt;br /&gt;&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;NTUSER.DAT and UsrClass.dat Locations in each user’s profile&lt;br /&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;NTUSER.DAT&lt;br /&gt;&lt;/dt&gt;
-    &lt;dd&gt;C:\Users\&amp;lt;username&amp;gt;\NTUSER.DAT&lt;br /&gt;&lt;/dd&gt;
-  &lt;/dl&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;UsrClass.dat&lt;br /&gt;&lt;/dt&gt;
-    &lt;dd&gt;C:\Users\&amp;lt;username&amp;gt;\AppData\Local\Microsoft\Windows\UsrClass.dat&lt;br /&gt;&lt;/dd&gt;
-  &lt;/dl&gt;
-&lt;/blockquote&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;&lt;strong&gt;Once parsing the mentioned two DAT files, Shellbag keys are in the following locations&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;NTUSER.DAT\Software\Microsoft\Windows\Shell\BagMRU&lt;/dd&gt;
-  &lt;dd&gt;NTUSER.DAT\Software\Microsoft\Windows\Shell\Bags&lt;/dd&gt;
-  &lt;dd&gt;UsrClass.dat\Local Settings\Software\Microsoft\Windows\Shell\BagMRU&lt;/dd&gt;
-  &lt;dd&gt;UsrClass.dat\Local Settings\Software\Microsoft\Windows\Shell\Bags&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;&lt;strong&gt;Shellbag keys description&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;BagMRU&lt;br /&gt;&lt;/dt&gt;
-    &lt;dd&gt;Stores actual directory structures of accessed folders&lt;br /&gt;&lt;/dd&gt;
-  &lt;/dl&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;dl&gt;
-    &lt;dt&gt;Bags&lt;br /&gt;&lt;/dt&gt;
-    &lt;dd&gt;Stores actual folder customization data (window size, layout type, etc.)&lt;br /&gt;&lt;/dd&gt;
-  &lt;/dl&gt;
-&lt;/blockquote&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;&lt;strong&gt;Shellbags Parsing Tools&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;Windows ShellBag Parser&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;Shellbags.py&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;ShellBags Explorer (View both NTUSER.DAT and UsrClass.dat)&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;SBECmd&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;Registry Explorer&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;RECmd&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;etc.&lt;br /&gt;&lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-Let’s check 1st medium challenge (Can’t touch this) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
-
-&lt;p&gt;Used tool here will be ShellBags Explorer&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;7th-challenge&quot;&gt;7th Challenge&lt;/h3&gt;
-
-&lt;p&gt;This challenge asks if “Projects” folder was accessed in a specific time frame, and if so, confirm the folder recreation timestamp.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210213-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Since the provided evidence contains user’s profile files, we’ll view both registry files NTUSER.DAT and UsrClass.dat using ShellBags Explorer searching for “Projects” folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210213-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;12:41:26&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Shellbags" /><summary type="html">Sometimes we would like to know when investigating a user profile, if that user has accessed important folders, for example.</summary></entry><entry><title type="html">Was a USB connected to system?</title><link href="http://localhost:4000/blog/IRC/usb-investigation" rel="alternate" type="text/html" title="Was a USB connected to system?" /><published>2021-02-06T13:45:00+03:00</published><updated>2021-02-06T13:45:00+03:00</updated><id>http://localhost:4000/blog/IRC/usb-investigation</id><content type="html" xml:base="http://localhost:4000/blog/IRC/usb-investigation">&lt;p&gt;Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Maker&lt;/li&gt;
-  &lt;li&gt;Serial Number/UID&lt;/li&gt;
-  &lt;li&gt;USB Connection Date/Time&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;usb-connection-investigation&quot;&gt;USB Connection Investigation&lt;/h3&gt;
-&lt;p&gt;To investigate if a USB was connected or not, SYSTEM registry hive can be parsed looking for USBSTOR registry key.&lt;/p&gt;
-
-&lt;dl&gt;
-  &lt;dt&gt;&lt;strong&gt;System Registry Files Location&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;%Windir%\System32\Config&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;One of which is SYSTEM hive&lt;/dd&gt;
-  &lt;dt&gt;&lt;strong&gt;USBSTOR Registry Key Location inside SYSTEM hive&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;SYSTEM\CurrentControlSet\Enum\USBSTOR&lt;/dd&gt;
-  &lt;dt&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dt&gt;I have parsed SYSTEM hive and I noticed ControlSet00* and not CurrentControlSet&lt;br /&gt;&lt;/dt&gt;
-  &lt;dd&gt;ControlSet001 is the last control set the system booted with&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;ControlSet002 is the last known good control set&lt;br /&gt;
-&lt;br /&gt;&lt;/dd&gt;
-  &lt;dt&gt;&lt;strong&gt;USB Investigation Tools&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dd&gt;Registry explorer (SYSTEM Hive)&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;USB Detective&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;RECmd&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;RegRipper&lt;br /&gt;&lt;/dd&gt;
-  &lt;dd&gt;etc.&lt;br /&gt;
-&lt;br /&gt;&lt;/dd&gt;
-  &lt;dt&gt;&lt;strong&gt;Hunt for USB Connection&lt;/strong&gt;&lt;/dt&gt;
-  &lt;dt&gt;If you would like to know whenever a new external device is connected or enabled, look for this event ID&lt;br /&gt;&lt;/dt&gt;
-  &lt;dd&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Security Logs, Event ID: 6416&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/dd&gt;
-&lt;/dl&gt;
-
-&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt;
-Let’s check 2nd easy challenge (Hello DoK) in (incident-response-challenge.com) website and try to solve it.&lt;/p&gt;
-
-&lt;p&gt;Used tool here will be Registry Explorer&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;6th-challenge&quot;&gt;6th Challenge&lt;/h3&gt;
-
-&lt;p&gt;This challenge focuses on proving whether a USB was connected to system, and if so, provide its serial/UID number.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Question Screenshot&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-1.png&quot; alt=&quot;first screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We’ll parse SYSTEM hive using Registry Explorer and navigate to the following key USBSTOR
-SYSTEM\ControlSet001\Enum\USBSTOR&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-2.png&quot; alt=&quot;second screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Maker: SanDisk&lt;/p&gt;
-
-&lt;h3 id=&quot;answer-to-the-challenge&quot;&gt;Answer to the challenge&lt;/h3&gt;
-&lt;p&gt;Serial/UID: 4C530000281008116284&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h3 id=&quot;usb-connection-datestimes&quot;&gt;USB Connection Dates/Times&lt;/h3&gt;
-&lt;p&gt;Using the same registry key USBSTOR, we are able to know more information with regards to USB connection/removal dates/times&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;The first time this USB was connected&lt;/li&gt;
-  &lt;li&gt;The last time this USB was connected&lt;/li&gt;
-  &lt;li&gt;The last time this USB was removed&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The followng screenshot shows these evidence&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/images/210206-3.png&quot; alt=&quot;third screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;The challenge used in this post belongs to &lt;a href=&quot;https://incident-response-challenge.com/&quot;&gt;incident-response-challenge.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-6416&lt;/li&gt;
-  &lt;li&gt;https://www.13cubed.com/downloads/dfir_cheat_sheet.pdf&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><summary type="html">Sometimes, we would like to investigate if a USB connected to a system, and provide information related to the USB such as its Maker Serial Number/UID USB Connection Date/Time</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>HejelyLab</name></author><category term="IRC" /><category term="Digital Forensics" /><category term="Memory Investigation" /><summary type="html">Let’s check 1st advanced challenge (2nd Base) in (incident-response-challenge.com) website and try to solve it.</summary></entry></feed>

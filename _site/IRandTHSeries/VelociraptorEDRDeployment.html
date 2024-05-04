@@ -1,0 +1,137 @@
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3JT3XFHMLX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3JT3XFHMLX');
+</script>
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Incident Response &amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain | Hejely Lab</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Incident Response &amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain" />
+<meta name="author" content="HejelyLab" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Description Collecting evidence and obtaining information and artifacts is one of the most important stages during incident handling, especially when dealing with hundreds or thousands of systems. In this series, we will use Velociraptor Open-source EDR for its many advantages that facilitate expected tasks during Incident Response and Threat Hunting. There are more than one way to deploy Velociraptor, and we will explore two methods in this series: Agentless Deployment. Deployment as a service." />
+<meta property="og:description" content="Description Collecting evidence and obtaining information and artifacts is one of the most important stages during incident handling, especially when dealing with hundreds or thousands of systems. In this series, we will use Velociraptor Open-source EDR for its many advantages that facilitate expected tasks during Incident Response and Threat Hunting. There are more than one way to deploy Velociraptor, and we will explore two methods in this series: Agentless Deployment. Deployment as a service." />
+<link rel="canonical" href="http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRDeployment" />
+<meta property="og:url" content="http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRDeployment" />
+<meta property="og:site_name" content="Hejely Lab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-03T18:30:00+03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Incident Response &amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain" />
+<script type="application/ld+json">
+{"description":"Description Collecting evidence and obtaining information and artifacts is one of the most important stages during incident handling, especially when dealing with hundreds or thousands of systems. In this series, we will use Velociraptor Open-source EDR for its many advantages that facilitate expected tasks during Incident Response and Threat Hunting. There are more than one way to deploy Velociraptor, and we will explore two methods in this series: Agentless Deployment. Deployment as a service.","url":"http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRDeployment","headline":"Incident Response &amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain","@type":"BlogPosting","dateModified":"2024-05-03T18:30:00+03:00","datePublished":"2024-05-03T18:30:00+03:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/blog/IRandTHSeries/VelociraptorEDRDeployment"},"author":{"@type":"Person","name":"HejelyLab"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=575a271a75dc0d907b7527ee12ad85755f67f6b4">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/blog/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/blog/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <section>
+        <div id="btitle"> <!-- blog title and description-->
+          <a href="/blog/"><h1>Hejely Lab</h1></a>
+          <p>DFIR | Threat Hunting</p>
+          <hr> 
+        </div> 
+                
+        
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h2 id="importantheader" class="post-title p-name" itemprop="name headline">Incident Response &amp; Threat Hunting Series, Velociraptor EDR Deployment in an AD Domain</h2>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-05-03T18:30:00+03:00" itemprop="datePublished">May 3, 2024
+      </time>
+    <!--  
+ --></p>
+
+      
+  </header>
+
+  <div id="artical-content" class="post-content e-content" itemprop="articleBody">
+    <p><strong>Description</strong>
+Collecting evidence and obtaining information and artifacts is one of the most important stages during incident handling, especially when dealing with hundreds or thousands of systems. In this series, we will use Velociraptor Open-source EDR for its many advantages that facilitate expected tasks during Incident Response and Threat Hunting. There are more than one way to deploy Velociraptor, and we will explore two methods in this series:</p>
+<ol>
+  <li>Agentless Deployment.</li>
+  <li>Deployment as a service.</li>
+</ol>
+
+<hr />
+
+<p><strong>Agentless Deployment</strong>
+To deploy Velociraptor as Agentless, we can follow this lesson <br />
+<a href="https://www.youtube.com/watch?v=DmKhLo5n5lE">IR &amp; TH Series - Velociraptor EDR Agentless Deployment [ARABIC]</a>
+<br /><br /></p>
+
+<p><strong>EDR Deployment as a Service</strong>
+To apply the second method, which is Deployment as a service we can follow the below link <br />
+<a href="https://www.youtube.com/watch?v=00vVfBWwxes">IR &amp; TH Series - Velociraptor EDR Deployment as a Service [ARABIC]</a> <br />
+The benefit of using this method is the presence of the Velociraptor Service even after a system restart.</p>
+
+  </div>
+
+  <div class="categories-container">
+    <p><strong>Categories:</strong></p>
+    <div class="post-categories">
+      
+      
+      <a href="/blog/categories.html#Incident Response & Threat Hunting Series">Incident Response & Threat Hunting Series</a>
+      
+      
+    </div>
+  </div><a class="u-url" href="/blog/IRandTHSeries/VelociraptorEDRDeployment" hidden></a>
+</article>
+
+
+        <hr>
+        <div id="footer">
+          <!--
+          <svg ><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg>-->
+           <a href="https://www.linkedin.com/in/abdulazizalhejely">Linkedin | abdulazizalhejely</a>
+          
+
+           <p>&copy; HejelyLab 2024</p>
+        </div>
+        
+        
+        
+
+      </section>
+
+    </div>
+
+    
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'G-3JT3XFHMLX', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>
